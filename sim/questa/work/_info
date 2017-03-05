@@ -1,0 +1,431 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/sim
+vadder
+Z1 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+Z2 !s110 1488243120
+!i10b 1
+!s100 CeQgj>T94JNOAbCSKZSSG0
+IkOV3]Xo^TZj35X:MQDTRE2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 adder_sv_unit
+S1
+R0
+Z4 w1488242591
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/adder.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/adder.sv
+L0 1
+Z5 OL;L;10.4c;61
+r1
+!s85 0
+31
+Z6 !s108 1488243120.000000
+Z7 !s107 /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/arm.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/mux2.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/controller.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condlogic.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/adder.sv|
+Z8 !s90 -quiet|-64|-sv|-f|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/rtl.cfg|
+!i113 0
+Z9 o-quiet -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+valu
+R1
+R2
+!i10b 1
+!s100 WJ:IHm9@oYTDJ<T8Q6g:c0
+IC=5e0Li>b523R91g`F=_61
+R3
+!s105 alu_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+varm
+R1
+R2
+!i10b 1
+!s100 I:1PoTi=XQW>C0U4hV3cB0
+Iff>z3gACG<_G:XIL0o9NG2
+R3
+!s105 arm_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/arm.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/arm.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vcondcheck
+R1
+R2
+!i10b 1
+!s100 cHHWzDI:7K6]ba[Z`m`<D2
+ITf4IBfbR1T5[10B?GM79b1
+R3
+!s105 condcheck_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vcondlogic
+R1
+R2
+!i10b 1
+!s100 nbIzBmhjGTAkAN2Hj=7Oe3
+I84eo24H6I_DkRUh`mMTjH0
+R3
+!s105 condlogic_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condlogic.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condlogic.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vcontroller
+R1
+R2
+!i10b 1
+!s100 0eh5JXgL_91DjmIZ06]b[1
+I@<@4YB8F]D1j^m9jPRC:Z1
+R3
+!s105 controller_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/controller.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/controller.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vdatapath
+R1
+R2
+!i10b 1
+!s100 bSgi6cQ1Nl;PlnRaRaFGN3
+I59V<4^E3nGW>c7_6<S<CD0
+R3
+Z10 !s105 datapath_sv_unit
+S1
+R0
+Z11 w1488243084
+Z12 8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv
+Z13 F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv
+L0 7
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vdecoder
+R1
+R2
+!i10b 1
+!s100 c[DkEbbC1dLg;>>LJc=P=1
+I2DBzZXK^a8`RBCjGDdfRE1
+R3
+!s105 decoder_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv
+L0 7
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vdmem
+R1
+R2
+!i10b 1
+!s100 j<H1PWN`kV`456=Wn7D]D3
+IW_NNdFMj[lDJSEFR4B:i22
+R3
+!s105 dmem_sv_unit
+S1
+R0
+Z14 w1488242593
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/dmem.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/dmem.sv
+L0 2
+R5
+r1
+!s85 0
+31
+R6
+Z15 !s107 /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/tb_top.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/top.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/dmem.sv|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/imem.sv|
+Z16 !s90 -quiet|-64|-sv|-f|/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/tb.cfg|-work|work|
+!i113 0
+Z17 o-quiet -sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+vextend
+R1
+R2
+!i10b 1
+!s100 XNDO_aHNk<7cCdK9l<=KM2
+IF<lD=7NSYd8_W[nC7QZ?Z2
+R3
+!s105 extend_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vflopenr
+R1
+R2
+!i10b 1
+!s100 G002>NTQd0Qf[h>hn@Y0G0
+Ij`PbZf?59fDiO@cI7=?>[2
+R3
+!s105 flopenr_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vflopr
+R1
+R2
+!i10b 1
+!s100 Fc9=3o9Q9GdSA<PO?Ui2Y2
+IQFi<9W00;YTeIG]>^8A@i1
+R3
+!s105 flopr_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vimem
+R1
+R2
+!i10b 1
+!s100 065CcmU8LY1Io=dJiWimU2
+ITVJjjn_Y;5:4z:i61<HJ>1
+R3
+!s105 imem_sv_unit
+S1
+R0
+R14
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/imem.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/imem.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R15
+R16
+!i113 0
+R17
+vmux2
+R1
+R2
+!i10b 1
+!s100 `ePC:YQM:GL4TQf9bRPU?0
+IFFR1k;^iAj1USTNJclZ2b3
+R3
+!s105 mux2_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/mux2.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/mux2.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vregfile
+R1
+R2
+!i10b 1
+!s100 R?GC9?<YGM^bi8IF9KlaD1
+IL7G5Lz:3>7bh5Q42k>X[_0
+R3
+!s105 regfile_sv_unit
+S1
+R0
+R4
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv
+L0 7
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vshifter
+R1
+R2
+!i10b 1
+!s100 F6BP_PE<S3zE`4aOe<3AA0
+I8z7C[];TUOV^hG2@N<?bY0
+R3
+R10
+S1
+R0
+R11
+R12
+R13
+L0 63
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+vtb_top
+R1
+R2
+!i10b 1
+!s100 l[BW3H[KK:KKY0SHnK@Oe1
+IbD[k@QRZ;a[hYU_@nAGNO3
+R3
+!s105 tb_top_sv_unit
+S1
+R0
+R14
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/tb_top.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/tb_top.sv
+L0 2
+R5
+r1
+!s85 0
+31
+R6
+R15
+R16
+!i113 0
+R17
+Ttb_top_opt
+R2
+V[mc3okE5fcM98XkbHEf[P1
+04 6 4 work tb_top fast 0
+o-quiet +acc -work work
+ntb_top_opt
+OL;O;10.4c;61
+vtop
+R1
+R2
+!i10b 1
+!s100 :H4CPZz9>3nJ5iUOhzG0[0
+Ib>^`h:E5Iz9kGi^CE4^Hd1
+R3
+!s105 top_sv_unit
+S1
+R0
+R14
+8/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/top.sv
+F/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/verif/top.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R15
+R16
+!i113 0
+R17

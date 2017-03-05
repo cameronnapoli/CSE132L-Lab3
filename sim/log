@@ -1,0 +1,17 @@
+** Error: (vlog-7) Failed to open -f file "/users/ugrad/2017/winter/cnapoli/lab-2-working/syn/design/rtl.cfg" in read mode.
+No such file or directory. (errno = ENOENT)
+Errors: 1, Warnings: 0
+** Error: /users/ugrad/2017/winter/cnapoli/lab-2-working/verif/testbench.sv(9): Module 'top' is not defined.
+Optimization failed
+Reading pref.tcl
+
+# 10.4c
+
+# vsim -quiet -c tb_top_opt -do "sim.do" "+notimingchecks" 
+# Start time: 14:24:51 on Feb 27,2017
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: (vopt-13130) Failed to find design unit work.tb_top_opt.
+# Optimization failed
+# Error loading design
+# End time: 14:24:51 on Feb 27,2017, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

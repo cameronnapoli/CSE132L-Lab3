@@ -1,0 +1,139 @@
+Warning: Detected use of obsolete/unsupported feature.  The following
+	will not be available in a future release of the application:
+	elaborate -update. Use plain elaborate instead (CMD-100)
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/gtech.db'
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/standard.sldb'
+  Loading link library 'saed32lvt_tt1p05vn40c'
+  Loading link library 'saed32sram_tt1p05vn40c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'arm'.
+Information: Building the design 'controller'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'datapath'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'decoder'. (HDL-193)
+
+Statistics for case statements in always block at line 23 in file
+	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'condlogic'. (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'mux2' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'flopr' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+
+Inferred memory devices in process
+	in routine flopr_WIDTH32 line 7 in file
+		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'adder' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'mux2' instantiated from design 'datapath' with
+	the parameters "4". (HDL-193)
+Presto compilation completed successfully.
+Information: Building the design 'regfile'. (HDL-193)
+
+Inferred memory devices in process
+	in routine regfile line 41 in file
+		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+===========================================================
+| block name/line  | Inputs | Outputs | # sel inputs | MB |
+===========================================================
+|    regfile/44    |   16   |   32    |      4       | N  |
+|    regfile/45    |   16   |   32    |      4       | N  |
+|    regfile/46    |   16   |   32    |      4       | N  |
+===========================================================
+Presto compilation completed successfully.
+Information: Building the design 'extend'. (HDL-193)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv:8: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 7 in file
+	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            8             |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'shifter'. (HDL-193)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv:70: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 69 in file
+	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            70            |    auto/auto     |
+|            78            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'alu'. (HDL-193)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv:27: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 20 in file
+	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            27            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Information: Building the design 'flopenr' instantiated from design 'condlogic' with
+	the parameters "2". (HDL-193)
+
+Inferred memory devices in process
+	in routine flopenr_WIDTH2 line 7 in file
+		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        q_reg        | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'condcheck'. (HDL-193)
+
+Statistics for case statements in always block at line 11 in file
+	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            12            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+1
