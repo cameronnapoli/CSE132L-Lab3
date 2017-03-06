@@ -3,8 +3,8 @@ module hazardunit(
     output logic StallID,
     output logic FlushID,
     output logic FlushE,
-    output logic ForwardAE,
-    output logic ForwardBE,
+    output logic [1:0] ForwardAE,
+    output logic [1:0] ForwardBE,
     output logic Match, // Input or Output ???
     output logic RegWriteM,
     output logic RegWriteW,
