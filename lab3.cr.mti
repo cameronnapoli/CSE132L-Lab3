@@ -1,0 +1,148 @@
+C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module tb_top
+
+Top level modules:
+	tb_top
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module imem
+
+Top level modules:
+	imem
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module condcheck
+
+Top level modules:
+	condcheck
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux2.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux2.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module mux2
+
+Top level modules:
+	mux2
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module controller
+
+Top level modules:
+	controller
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module regfile
+
+Top level modules:
+	regfile
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module flopenr
+
+Top level modules:
+	flopenr
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module adder
+
+Top level modules:
+	adder
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module hazardunit
+
+Top level modules:
+	hazardunit
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module condlogic
+
+Top level modules:
+	condlogic
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module flopr
+
+Top level modules:
+	flopr
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module mux2
+
+Top level modules:
+	mux2
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module dmem
+
+Top level modules:
+	dmem
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module regIFID
+-- Compiling module regIDEX
+-- Compiling module regEXMEM
+-- Compiling module regMEMWB
+
+Top level modules:
+	regIFID
+	regIDEX
+	regEXMEM
+	regMEMWB
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module decoder
+
+Top level modules:
+	decoder
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module datapath
+-- Compiling module shifter
+
+Top level modules:
+	datapath
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module arm
+
+Top level modules:
+	arm
+
+} {} {}} C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv {1 {vlog -work work -sv -stats=none C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module extend
+
+Top level modules:
+	extend
+
+} {} {}}
