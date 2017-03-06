@@ -4,21 +4,18 @@ module mux3
     input logic [1:0] s,
     output logic [WIDTH-1:0] y);
 
-    always_comb
-	
-	case(s)
-	
-	2'b00:
-	y = d0;
-	
-	2'b01:
-	y = d1;
-	
-	2'b10:
-	y = d2;
-	
-	default:
-	y = 2'b00000000; // error
+    always_comb begin
 
+    	case(s)
+        	2'b00:
+            	y = d0;
+        	2'b01:
+            	y = d1;
+        	2'b10:
+            	y = d2;
+        	default:
+            	y = 'hx; // error
+        endcase
 
+    end
 endmodule
