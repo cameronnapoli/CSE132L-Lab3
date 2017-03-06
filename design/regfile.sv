@@ -37,7 +37,7 @@ module regfile(
     // write third port on rising edge of clock
     // register 15 reads PC + 8 instead
 
-    always @(posedge clk)
+    always @(negedge clk)
         if (we3) rf[wa3] <= wd3;
 
     assign rd1 = (ra1 == 4'b1111) ? r15 : rf[ra1];
