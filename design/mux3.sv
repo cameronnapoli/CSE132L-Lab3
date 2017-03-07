@@ -14,7 +14,7 @@ module mux3
         	2'b10:
             	y = d2;
         	default:
-            	y = 'hx; // error
+            	y = 'hx;
         endcase
 
     end
