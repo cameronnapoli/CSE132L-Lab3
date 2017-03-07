@@ -5,7 +5,7 @@ module mux3
     output logic [WIDTH-1:0] y);
 
     always_comb begin
-
+        
     	case(s)
         	2'b00:
             	y = d0;
