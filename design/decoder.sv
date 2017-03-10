@@ -44,10 +44,10 @@ module decoder(
                 		controls = {10'b1011110100, Funct[2], 1'b0};
             // B
             2'b10:
-            if(Funct[4])
-                controls = {11'b01101000100, 1'b1};
-            else
-                controls = {11'b01101000100, 1'b0};
+                if(Funct[4])  // BL
+                    controls = {11'b01101010100, 1'b1};
+                else          // B
+                    controls = {11'b01101000100, 1'b0};
             default:
                 controls = 12'bx;
         endcase
