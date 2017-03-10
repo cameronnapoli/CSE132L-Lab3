@@ -52,7 +52,7 @@ module datapath(
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtImm, Out3,  Instr[4], Shamt);
-	shifter shftr(Instr[6:5], WriteData, Shamt, Reg);
+	shifter shftr(Instr[6:5], Instr[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);
 
     // ALU logic
     mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
@@ -62,9 +62,11 @@ endmodule
 
 module shifter(
     input logic [1:0] sh, // control bits
+	input logic bit4, carry
     input logic [31:0] readVal1, // R2 value from RegFile
     input logic [31:0] shiftAmount, // R3 value or shamt from instruction
-    output logic [31:0] shiftedOutput); // shifted output
+    output logic [31:0] shiftedOutput // shifted output
+	output logic carryFlag);
 
 always_comb
     case(sh)
@@ -107,7 +109,14 @@ always_comb
                 5'b11100: shiftedOutput = {readVal1[27:0], readVal1[31:28]};
                 5'b11101: shiftedOutput = {readVal1[28:0], readVal1[31:29]};
                 5'b11110: shiftedOutput = {readVal1[29:0], readVal1[31:30]};
-                5'b11111: shiftedOutput = {readVal1[30:0], readVal1[31]};
+				5'b11111: 
+					if(bit4) // RRX
+					{
+						shiftedOutput = {carry, readVal1[31:1]};
+						carryFlag = readVal1[0];
+					}
+					else  // ROR
+						shiftedOutput = {readVal1[30:0], readVal1[31]};
             endcase
         default:
             shiftedOutput = 32'bx;
