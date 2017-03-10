@@ -5,7 +5,7 @@ module mux3
     output logic [WIDTH-1:0] y);
 
     always_comb begin
-
+        
     	case(s)
         	2'b00:
             	y = d0;
@@ -14,7 +14,7 @@ module mux3
         	2'b10:
             	y = d2;
         	default:
-            	y = 'hx; // error
+            	y = 'hx;
         endcase
 
     end
