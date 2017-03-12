@@ -6,45 +6,49 @@
 
 module datapath(
     input logic clk, reset,
-    input logic [1:0] RegSrc,
+    input logic [1:0] RegSrcD,
     input logic RegWrite,
     input logic [1:0] ImmSrc,
     input logic ALUSrc,
     input logic [3:0] ALUControl,
     input logic MemtoReg,
-    input logic PCSrc,
+    input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW,
 
     output logic [3:0] ALUFlags,
-    output logic [31:0] PC,
-    input logic [31:0] Instr,
+    output logic [31:0] PCF,
+    input logic [31:0] InstrF,
     output logic [31:0] ALUResult, WriteData,
     input logic [31:0] ReadData,
     input logic BL);
 
 
-    logic [31:0] PCNext, PCPlus4, PCPlus8;
+    logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, Result;
     logic [31:0] Shamt, Out3, Reg, WD;
     logic [3:0] RA1, RA2, RA3, WA; //Added RA3, WriteData, Write Address
 
 
     // next PC logic
-    mux2 #(32) pcmux(PCPlus4, Result, PCSrc, PCNext);
-    flopr #(32) pcreg(clk, reset, PCNext, PC);
-    adder #(32) pcadd1(PC, 32'b100, PCPlus4);
-    adder #(32) pcadd2(PCPlus4, 32'b100, PCPlus8);
+    mux2 #(32) pcmux(PCPlus4, Result, PCSrcW, PCNext);//1
+    mux2 #(32) pcmux2(PCNext, ALUResultE, ?????, PCNext2);//2 --needs ????
+    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 --needs stallF. Implement reset?
+    adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
+    //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
+    
+    //Fetch-Decode Register
+    regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 --need flushD and stallD
 
 
     // register file logic
-    mux2 #(4) ra1mux(Instr[19:16], 4'b1111, RegSrc[0], RA1);
-    mux2 #(4) ra2mux(Instr[3:0], Instr[15:12], RegSrc[1], RA2); //why??
-    mux2 #(4) writeaddress(Instr[15:12], 4'b1110, BL, WA); //write address depends on BL
+    mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7
+    mux2 #(4) ra2mux(InstrD[3:0], Instr[15:12], RegSrcD[1], RA2); //8
+    mux2 #(4) writeaddress(InstrF[15:12], 4'b1110, BL, WA); //write address depends on BL
     mux2 #(32) writedata(Result, PCPlus4, BL, WD); //write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWrite, RA1, RA2, Instr[11:8],
+    regfile rf(clk, RegWriteW, RA1, RA2, Instr[11:8],
         WA, WD, PCPlus8,
-        SrcA, WriteData, Out3); //added RA3, Out3
+        SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
     mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
     extend ext(Instr[23:0], ImmSrc, ExtImm);
