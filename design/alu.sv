@@ -164,7 +164,7 @@ module alu(
 
         4'b1111 :     //Bitwise Not
         begin
-            ALUResult = ~SrcA;
+            ALUResult = ~SrcB;
             carry_flag = 1'b0;
             overflow_flag = 1'b0;
         end
