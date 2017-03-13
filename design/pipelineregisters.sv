@@ -6,7 +6,8 @@ module regPCPCF(
     );
 always @(posedge clk)
 begin
-    PC <= PCF;
+if (~stallF)
+    PCF <= PC;
 end
 endmodule
 
