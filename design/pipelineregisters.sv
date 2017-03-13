@@ -20,7 +20,12 @@ module regIFID(
     );
 always @(posedge clk)
 begin
-    InstrD <= InstrF;
+    if(flushD) begin
+        InstrD <= 32'h0;
+    end
+    else if(~stallD) begin
+        InstrD <= InstrF;
+    end
 end
 endmodule
 
