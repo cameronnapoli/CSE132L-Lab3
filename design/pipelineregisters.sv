@@ -30,7 +30,7 @@ end
 endmodule
 
 
-module regIDEX(
+module regIDEX( // Simple just uses flush
     input logic clk,
     input logic flushE,
     input logic [31:0] RD1D,
@@ -66,19 +66,40 @@ module regIDEX(
 //Implement Flush functionality
 always @(posedge clk)
 begin
-    RD1E <= RD1D;
-    RD2E <= RD2D;
-    ExtendE <= ExtendD;
-    PCSrcE <= PCSrcD;
-    RegWriteE <= RegWriteD;
-    MemtoRegE <= MemtoRegD;
-    MemWriteE <= MemWriteD;
-    ALUControlE <= ALUControlD;
-    BranchE <= BranchD;
-    ALUSrcE <= ALUSrcD;
-    FlagWriteE <= FlagWriteD;
-    ImmSrcE <= ImmSrcD;
-    CondE <= CondD;
+    if(flushE) begin
+        RD1E <= 32'h0;
+        RD2E <= 32'h0;
+        RD3E <= 32'h0;
+        ExtendE <= 32'h0;
+
+        PCSrcE <= 1'b0;
+        RegWriteE <= 1'b0;
+        MemtoRegE <= 1'b0;
+        MemWriteE <= 1'b0;
+        ALUControlE <= 1'b0;
+        BranchE <= 1'b0;
+        ALUSrcE <= 1'b0;
+        FlagWriteE <= 1'b0;
+        ImmSrcE <= 1'b0;
+        CondE <= 1'b0;
+    end
+    else begin
+        RD1E <= RD1D;
+        RD2E <= RD2D;
+        RD3E <= RD3D;
+        ExtendE <= ExtendD;
+
+        PCSrcE <= PCSrcD;
+        RegWriteE <= RegWriteD;
+        MemtoRegE <= MemtoRegD;
+        MemWriteE <= MemWriteD;
+        ALUControlE <= ALUControlD;
+        BranchE <= BranchD;
+        ALUSrcE <= ALUSrcD;
+        FlagWriteE <= FlagWriteD;
+        ImmSrcE <= ImmSrcD;
+        CondE <= CondD;
+    end
 end
 endmodule
 
