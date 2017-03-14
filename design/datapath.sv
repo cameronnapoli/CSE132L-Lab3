@@ -127,3 +127,11 @@ always_comb
     endcase
 
 endmodule
+
+module match(
+   input logic [3:0] R1,
+   input logic [3:0] R2,
+   output logic eq);
+
+eq = (R1==R2);
+end module
