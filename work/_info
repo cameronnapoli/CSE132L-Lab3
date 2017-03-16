@@ -10,557 +10,606 @@ cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 vadder
 Z0 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z1 !s110 1488840077
+!s110 1489519098
 !i10b 1
 !s100 CeQgj>T94JNOAbCSKZSSG0
-I=G9FgD`_A<j_jUX1OmEPi3
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+IGObinLMK;mR<`^85>CJLS1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
 !s105 adder_sv_unit
 S1
-Z3 dC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3
-Z4 w1488835493
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv
+Z2 dC:/Users/cameronnapoli/Documents/CSE132L-Lab3
+Z3 w1489347098
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/adder.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/adder.sv
 L0 1
-Z5 OP;L;10.4a;61
+Z4 OP;L;10.4a;61
 r1
 !s85 0
 31
-Z6 !s108 1488840077.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/adder.sv|
+Z5 !s108 1489519098.000000
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/adder.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/adder.sv|
 !s101 -O0
 !i113 1
-Z7 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+Z6 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
 valu
 R0
-R1
+Z7 !s110 1489519099
 !i10b 1
-!s100 EK@<Hl[0C=LL55AdCl57O2
-INT9aEL5H6[9?dUzaV2RI63
-R2
+!s100 Sj[l^TD7]JW`h5:9oNc130
+I`I[[[5Sm564_@PacU5n3E2
+R1
 !s105 alu_sv_unit
 S1
-R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv
+R2
+w1489441567
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/alu.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/alu.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R6
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/alu.sv|
+R5
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/alu.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/alu.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 varm
 R0
-Z8 !s110 1488840078
+R7
 !i10b 1
 !s100 I:1PoTi=XQW>C0U4hV3cB0
-I:2jg`ZXb8h<gLBO@d9z<`1
-R2
+I0RGYL_?4E3ModF62M:ERD3
+R1
 !s105 arm_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/arm.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/arm.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R6
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/arm.sv|
+Z8 !s108 1489519099.000000
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/arm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/arm.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vcondcheck
 R0
-R8
+R7
 !i10b 1
 !s100 cHHWzDI:7K6]ba[Z`m`<D2
-I>MR?S@ePX_6NQTe=^2I093
-R2
+IzT;z=Yi:jiZPB[8eI@g:H0
+R1
 !s105 condcheck_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condcheck.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condcheck.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-Z9 !s108 1488840078.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condcheck.sv|
+R8
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condcheck.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condcheck.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vcondlogic
 R0
-R8
+R7
 !i10b 1
 !s100 nbIzBmhjGTAkAN2Hj=7Oe3
-IZk0;7P=_KDO<zY;D:81EL1
-R2
+I<RlzFGW1MX16CjY]U2d762
+R1
 !s105 condlogic_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condlogic.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condlogic.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R9
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/condlogic.sv|
+R8
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condlogic.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/condlogic.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vcontroller
 R0
-R8
+R7
 !i10b 1
 !s100 0eh5JXgL_91DjmIZ06]b[1
-ILIklbGdg?M<G=2j?[H=W13
-R2
+IC2gZOUzRS>YE>_E3Y0ZBW2
+R1
 !s105 controller_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/controller.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/controller.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R9
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/controller.sv|
+R8
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/controller.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/controller.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vdatapath
 R0
-Z10 !s110 1488840079
+Z9 !s110 1488840079
 !i10b 1
 !s100 akoj:=M=a4XO?]K<hAGEX2
 IzTE=I<cFdaD0>Bm]<VYc`1
-R2
-Z11 !s105 datapath_sv_unit
+R1
+Z10 !s105 datapath_sv_unit
 S1
-R3
-R4
-Z12 8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv
-Z13 FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv
+Z11 dC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3
+Z12 w1488835493
+Z13 8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv
+Z14 FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv
 L0 7
-R5
+R4
 r1
 !s85 0
 31
-R9
-Z14 !s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv|
-Z15 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv|
+Z15 !s108 1488840078.000000
+Z16 !s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv|
+Z17 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/datapath.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vdecoder
 R0
-R10
+Z18 !s110 1489519100
 !i10b 1
-!s100 n]ElTQ`7F3kM=jD1:1O_[1
-ILMTVCPIjzf6C9ifN[V<c82
-R2
+!s100 EV0B4EbZ]BbTPUYVfn]Oi1
+I9n_S`J0m^U7BjcGTTOE_]2
+R1
 !s105 decoder_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/decoder.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/decoder.sv
 L0 7
-R5
+R4
 r1
 !s85 0
 31
-Z16 !s108 1488840079.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/decoder.sv|
+Z19 !s108 1489519100.000000
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/decoder.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/decoder.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vdmem
 R0
-Z17 !s110 1488840081
+Z20 !s110 1489519102
 !i10b 1
 !s100 j<H1PWN`kV`456=Wn7D]D3
-IkekzA]7FE5C7k]mV=7[O`1
-R2
+IF>>[N7g9FlVEbJ<_S<Pd;2
+R1
 !s105 dmem_sv_unit
 S1
-R3
-Z18 w1488835494
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv
+R2
+Z21 w1489347099
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/dmem.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/dmem.sv
 L0 2
-R5
+R4
 r1
 !s85 0
 31
-Z19 !s108 1488840081.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/dmem.sv|
+Z22 !s108 1489519102.000000
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/dmem.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/dmem.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vextend
 R0
-R10
+R18
 !i10b 1
 !s100 ?TSRYg86MP2Zo?eHR4@3g2
-I8Q;KW_]40`@Q3H8Bj>26n1
-R2
+IeoUk3<44P5OozG7k12=jJ1
+R1
 !s105 extend_sv_unit
 S1
+R2
 R3
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/extend.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/extend.sv
+L0 1
 R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv
-L0 1
-R5
-r1
-!s85 0
-31
-R16
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/extend.sv|
-!s101 -O0
-!i113 1
-R7
-vflopenr
-R0
-R10
-!i10b 1
-!s100 G002>NTQd0Qf[h>hn@Y0G0
-I@o16bdWj6kQVQi;oK=V[a1
-R2
-!s105 flopenr_sv_unit
-S1
-R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv
-L0 1
-R5
-r1
-!s85 0
-31
-R16
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopenr.sv|
-!s101 -O0
-!i113 1
-R7
-vflopr
-R0
-Z20 !s110 1488840080
-!i10b 1
-!s100 Fc9=3o9Q9GdSA<PO?Ui2Y2
-IBg]6Ld7djB3?_DfghF8>O0
-R2
-!s105 flopr_sv_unit
-S1
-R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv
-L0 1
-R5
-r1
-!s85 0
-31
-R16
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/flopr.sv|
-!s101 -O0
-!i113 1
-R7
-vhazardunit
-R0
-R20
-!i10b 1
-!s100 ];;PLLb8BW><^5BH9J@aD3
-Idz_gCbLTlHdYGlZ71l:HF2
-R2
-!s105 hazardunit_sv_unit
-S1
-R3
-w1488839750
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv
-L0 1
-R5
-r1
-!s85 0
-31
-Z21 !s108 1488840080.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/hazardunit.sv|
-!s101 -O0
-!i113 1
-R7
-vimem
-R0
-R17
-!i10b 1
-!s100 FE7NY7]COTlalL_Xh]UTH1
-In^Co^:?63=MIT_L`[fcj=3
-R2
-!s105 imem_sv_unit
-S1
-R3
-R18
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv
-L0 1
-R5
 r1
 !s85 0
 31
 R19
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/imem.sv|
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/extend.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/extend.sv|
 !s101 -O0
 !i113 1
-R7
+R6
+vflopenr
+R0
+R18
+!i10b 1
+!s100 G002>NTQd0Qf[h>hn@Y0G0
+I<1;CCLoDzZWD`S?Ao`^>f1
+R1
+!s105 flopenr_sv_unit
+S1
+R2
+R3
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopenr.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopenr.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopenr.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopenr.sv|
+!s101 -O0
+!i113 1
+R6
+vflopr
+R0
+R18
+!i10b 1
+!s100 Fc9=3o9Q9GdSA<PO?Ui2Y2
+I[RcVcE^g6aWKP7z]Y3fI03
+R1
+!s105 flopr_sv_unit
+S1
+R2
+R3
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopr.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopr.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopr.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/flopr.sv|
+!s101 -O0
+!i113 1
+R6
+vhazardunit
+R0
+Z23 !s110 1489519101
+!i10b 1
+!s100 _Io:NkdM^lHX1CKnHD][X0
+IX8:_TFTl17mnbFQ^PN=dM1
+R1
+!s105 hazardunit_sv_unit
+S1
+R2
+w1489518990
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/hazardunit.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/hazardunit.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/hazardunit.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/hazardunit.sv|
+!s101 -O0
+!i113 1
+R6
+vimem
+R0
+R20
+!i10b 1
+!s100 FE7NY7]COTlalL_Xh]UTH1
+I51:1BJ]g_4g`QUeDifiR[1
+R1
+!s105 imem_sv_unit
+S1
+R2
+R21
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/imem.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/imem.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R22
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/imem.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/imem.sv|
+!s101 -O0
+!i113 1
+R6
 vmux2
 R0
-!s110 1488840101
+R23
 !i10b 1
-!s100 aaXEf6XIbZ4Kmgjf1ljP^1
-I1JFb;nd9>Y325Ka2YSVHz0
+!s100 `ePC:YQM:GL4TQf9bRPU?0
+IDkHcz7L=mWLC<3n<`STe@2
+R1
+!s105 mux2_sv_unit
+S1
 R2
+R3
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux2.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux2.sv
+L0 1
+R4
+r1
+!s85 0
+31
+Z24 !s108 1489519101.000000
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux2.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux2.sv|
+!s101 -O0
+!i113 1
+R6
+vmux3
+R0
+R23
+!i10b 1
+!s100 6VlmDebAR>KdJnDNe0c]g0
+I==32l5`:Pj14gKCB6^eKh2
+R1
 !s105 mux3_sv_unit
 S1
+R2
 R3
-w1488840097
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux3.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux3.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-!s108 1488840101.000000
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/mux3.sv|
+R24
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux3.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/mux3.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vregEXMEM
 R0
-R17
+Z25 !s110 1489519779
 !i10b 1
-!s100 ILOX8F3kZCoNbU?a7AP<O2
-Ie<mlc^Oh1<:CRe>lYmA:K1
-R2
-Z22 !s105 pipelineregisters_sv_unit
+!s100 GiP7kMZhWk`ngoSiLbWl13
+IR8@2I^NVlKn[ZK>[ED08H2
+R1
+Z26 !s105 pipelineregisters_sv_unit
 S1
-R3
-Z23 w1488839906
-Z24 8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv
-Z25 FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv
-L0 15
-R5
+R2
+Z27 w1489519773
+Z28 8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/pipelineregisters.sv
+Z29 FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/pipelineregisters.sv
+L0 107
+R4
 r1
 !s85 0
 31
-R21
-Z26 !s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv|
-Z27 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/pipelineregisters.sv|
+Z30 !s108 1489519778.000000
+Z31 !s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/pipelineregisters.sv|
+Z32 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/pipelineregisters.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 nreg@e@x@m@e@m
 vregfile
 R0
-R1
+R23
 !i10b 1
-!s100 9e?2dejXIFIe[Bc@L;Zo21
-I]dZCS_hMc<_OaUI6=Kg9c1
-R2
+!s100 ga6]iDI7zdMjLJ2;FhHeH0
+I:?0=[H=JlDZ^;^^aOjjOb0
+R1
 !s105 regfile_sv_unit
 S1
+R2
 R3
-R4
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/regfile.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/regfile.sv
 L0 7
-R5
+R4
 r1
 !s85 0
 31
-R6
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/design/regfile.sv|
+R24
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/regfile.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/design/regfile.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vregIDEX
 R0
-R20
-!i10b 1
-!s100 mOnY3US;e^@>73=4^6hOR0
-IIbBUF=95O1<XBHlPjG<1>2
-R2
-R22
-S1
-R3
-R23
-R24
 R25
-L0 8
-R5
+!i10b 1
+!s100 8hP84J6IeiiFOPG[2ZV<Y0
+Ib7Y>^03Ccgz`6CZ3XCa`I1
+R1
+R26
+S1
+R2
+R27
+R28
+R29
+L0 33
+R4
 r1
 !s85 0
 31
-R21
-R26
-R27
+R30
+R31
+R32
 !s101 -O0
 !i113 1
-R7
+R6
 nreg@i@d@e@x
 vregIFID
 R0
-R20
-!i10b 1
-!s100 fMHdjg_0=J;OHAg?iY8bl3
-IcIZ6B7S3jjonEnA9NNnSc1
-R2
-R22
-S1
-R3
-R23
-R24
 R25
-L0 1
-R5
+!i10b 1
+!s100 5c78E:BNiMnN<8@A2YP]53
+I3GGH>Kiao2PE7a7P^<EO[3
+R1
+R26
+S1
+R2
+R27
+R28
+R29
+L0 14
+R4
 r1
 !s85 0
 31
-R21
-R26
-R27
+R30
+R31
+R32
 !s101 -O0
 !i113 1
-R7
+R6
 nreg@i@f@i@d
 vregMEMWB
 R0
-R17
-!i10b 1
-!s100 HU3?ARPFmd@nGW27<eD>_0
-I:c8;FG1DGNdX0P84iDSE33
-R2
-R22
-S1
-R3
-R23
-R24
 R25
-L0 22
-R5
+!i10b 1
+!s100 _`n?[QUEcKn<?BEOCTRPb2
+IhPgROEL[E;3H8l:M4UXz>1
+R1
+R26
+S1
+R2
+R27
+R28
+R29
+L0 138
+R4
 r1
 !s85 0
 31
-R21
-R26
-R27
+R30
+R31
+R32
 !s101 -O0
 !i113 1
-R7
+R6
 nreg@m@e@m@w@b
+vregPCPCF
+R0
+R25
+!i10b 1
+!s100 ilJcJFnR^_84EObbPIQ=N3
+I9SVHIk6JeoC:;4:75koeB2
+R1
+R26
+S1
+R2
+R27
+R28
+R29
+L0 1
+R4
+r1
+!s85 0
+31
+R30
+R31
+R32
+!s101 -O0
+!i113 1
+R6
+nreg@p@c@p@c@f
 vshifter
 R0
-R10
+R9
 !i10b 1
 !s100 F6BP_PE<S3zE`4aOe<3AA0
 I>P:G_[nW;bdA_?V7gP@360
-R2
-R11
+R1
+R10
 S1
-R3
-R4
+R11
 R12
 R13
+R14
 L0 63
-R5
+R4
 r1
 !s85 0
 31
-R9
-R14
 R15
+R16
+R17
 !s101 -O0
 !i113 1
-R7
+R6
 vtb_top
 R0
-!s110 1488840082
+R20
 !i10b 1
 !s100 ^D=n^AZi2c?A]D[1_0K8?0
-I7CiczOcMORC[9m2M7eX=k2
-R2
+I9YGCU>Ggnn4d`IcihhL_T0
+R1
 !s105 tb_top_sv_unit
 S1
-R3
-R18
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv
+R2
+R21
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/tb_top.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/tb_top.sv
 L0 2
-R5
+R4
 r1
 !s85 0
 31
-R19
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/tb_top.sv|
+R22
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/tb_top.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/tb_top.sv|
 !s101 -O0
 !i113 1
-R7
+R6
 vtop
 R0
-R17
+R20
 !i10b 1
 !s100 :H4CPZz9>3nJ5iUOhzG0[0
-Igeci0m3GIUAnAkOl?U_jY0
-R2
+IGWW2g5:54jDFIYbNBWj:I1
+R1
 !s105 top_sv_unit
 S1
-R3
-R18
-8C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv
-FC:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv
+R2
+R21
+8C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/top.sv
+FC:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/top.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R19
-!s107 C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/132L_workspace/CSE132L-Lab3/verif/top.sv|
+R22
+!s107 C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/top.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/cameronnapoli/Documents/CSE132L-Lab3/verif/top.sv|
 !s101 -O0
 !i113 1
-R7
+R6
