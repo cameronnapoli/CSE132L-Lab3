@@ -18,12 +18,11 @@ module hazardunit(
     input logic MemtoRegE,
     input logic PCSrcD,
     input logic PCSrcE,
-    input logic PCSrcM
-=======
+    input logic PCSrcM,
+
     output logic RegWriteM,
     output logic RegWriteW,
     output logic MemtoRegE
->>>>>>> 7b1bde13f5856048d677d1a34ae7fca1adcee57f
     );
 
 //Match_1E_M = (RA1E == WA3M)
@@ -53,7 +52,7 @@ else
 //Then Stall in Decode Stage.(FlushE, stallD, stallF)
 //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
 LDRstall = Match_12D_E | MemtoRegE;
-StallF = StallD = FlushE = LDRstall;
+
 
 //Control Hazards 437
 PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
