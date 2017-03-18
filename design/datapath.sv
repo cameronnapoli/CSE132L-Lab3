@@ -21,29 +21,30 @@ module datapath(
     input logic [31:0] ReadData,
     input logic BL);
 
-
+    logic stallF;
+    logic BranchTakenE
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
-    logic [31:0] ExtImm, SrcA, SrcB, Result;
+    logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
     logic [3:0] RA1, RA2, RA3, WA; //Added RA3, WriteData, Write Address
 
 
     // next PC logic
-    mux2 #(32) pcmux(PCPlus4, Result, PCSrcW, PCNext);//1
-    mux2 #(32) pcmux2(PCNext, ALUResultE, ?????, PCNext2);//2 --needs ????
-    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 --needs stallF. Implement reset?
+    mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
+    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed
+    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
     
     //Fetch-Decode Register
-    regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 --need flushD and stallD
+    regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
 
     // register file logic
-    mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7
-    mux2 #(4) ra2mux(InstrD[3:0], Instr[15:12], RegSrcD[1], RA2); //8
-    mux2 #(4) writeaddress(InstrF[15:12], 4'b1110, BL, WA); //write address depends on BL
-    mux2 #(32) writedata(Result, PCPlus4, BL, WD); //write data depends on BL
+    mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
+    mux2 #(4) ra2mux(InstrD[3:0], Instr[15:12], RegSrcD[1], RA2); //8 confirmed
+    mux2 #(4) writeaddress(InstrF[15:12], 4'b1110, BL, WA); //TODO write address depends on BL
+    mux2 #(32) writedata(Result, PCPlus4, BL, WD); //TODO write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, Instr[11:8],
