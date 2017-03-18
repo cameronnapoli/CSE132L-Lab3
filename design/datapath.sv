@@ -52,7 +52,7 @@ module datapath(
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
     mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
-    extend ext(Instr[23:0], ImmSrc, ExtImm);
+    extend ext(Instr[23:0], ImmSrc, ExtImm); //10 
 
 
     //Shift Logic
