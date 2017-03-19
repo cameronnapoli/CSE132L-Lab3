@@ -11,13 +11,15 @@ module hazardunit(
     input logic Match_2E_M,
     input logic Match_2E_W,
     input logic Match_12D_E,
+    input logic BranchTakenE,
 
     input logic RegWriteM,
     input logic RegWriteW,
     input logic MemtoRegE,
     input logic PCSrcD,
     input logic PCSrcE,
-    input logic PCSrcM
+    input logic PCSrcM,
+    input logic PCSrcW
 
     );
 
