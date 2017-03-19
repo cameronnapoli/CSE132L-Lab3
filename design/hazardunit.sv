@@ -29,7 +29,7 @@ module hazardunit(
 //Match_2E_W = (RA2E == WA3W)
 
 //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
-
+logic LDRstall, PCWrPendingF;
 //Forwarding
 always_comb begin
 	//Forwarding
@@ -51,10 +51,10 @@ always_comb begin
 	//IF LDR and WA3E (in execute stage) Matches RA1D or RA2D
 	//Then Stall in Decode Stage.(FlushE, stallD, stallF)
 	//Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
-	logic LDRstall = Match_12D_E | MemtoRegE;
+	LDRstall = Match_12D_E | MemtoRegE;
 
 	//Control Hazards 437
-	logic PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
+	PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
 	StallD = LDRstall;
 	StallF = LDRstall | PCWrPendingF;
 	FlushE = LDRstall | BranchTakenE;
