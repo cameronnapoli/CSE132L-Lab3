@@ -12,7 +12,7 @@ module datapath(
     input logic ALUSrc,
     input logic [3:0] ALUControl,
     input logic MemtoReg,
-    input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW,
+    input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW, // Why are 4 PC Src's here as input
 
     output logic [3:0] ALUFlags,
     output logic [31:0] PCF,
@@ -42,17 +42,17 @@ module datapath(
 
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
-    mux2 #(4) ra2mux(InstrD[3:0], Instr[15:12], RegSrcD[1], RA2); //8 confirmed
+    mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
     mux2 #(4) writeaddress(InstrF[15:12], 4'b1110, BL, WA); //TODO write address depends on BL
     mux2 #(32) writedata(Result, PCPlus4, BL, WD); //TODO write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWriteW, RA1, RA2, Instr[11:8],
+    regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
         WA, WD, PCPlus8,
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
     mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
-    extend ext(Instr[23:0], ImmSrc, ExtImm); //10
+    extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
 
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
@@ -72,20 +72,20 @@ module datapath(
     // Add more wires for regEXMEM
     logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
     logic [31:0] WriteDataM, ALUOutM, WA3M;
-    regEXMEM xmreg(clk, PCSrcE, PCSrcM, RegWriteE, RegWriteM, MemtoRegE,
+    regEXMEM xmreg(clk, PCSrcE, PCSrcM, RegWriteE, RegWriteM, MemtoRegE, //12
                     MemtoRegM, MemWriteE, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
     logic MemtoRegW; // Should be MemtoReg ???
-    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM,
+    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 
 
 
     //Shift Logic
-    mux2 #(32) shamtmux(ExtImm, Out3,  Instr[4], Shamt);
-	shifter shftr(Instr[6:5], Instr[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);
+    mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
+	shifter shftr(Instr[6:5], Instr[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]); // InstrD???
 
     // ALU logic
     mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
