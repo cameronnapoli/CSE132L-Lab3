@@ -1,3 +1,4 @@
+CSE 132L Lab 3 - Pipelined Processor
 
 # NOTES:
 #  --> All Systemverilog DESIGN related files should be placed in design directory and add the file name to rtl.cfg file.
@@ -14,4 +15,3 @@ source pre_compile.csh
 # run the following command for compilation and simulations
 
 source run
-
