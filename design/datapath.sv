@@ -64,11 +64,11 @@ module datapath(
     logic [1:0] ImmSrcE;
 
     regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
-            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // Need to modify contrl bits
+            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
             FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
-        
+
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtImm, Out3,  Instr[4], Shamt);
