@@ -69,6 +69,19 @@ module datapath(
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
             FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
 
+    // Add more wires for regEXMEM
+    logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
+    logic [31:0] WriteDataM, ALUOutM, WA3M;
+    regEXMEM xmreg(clk, PCSrcE, PCSrcM, RegWriteE, RegWriteM, MemtoRegE,
+                    MemtoRegM, MemWriteE, MemWriteM, ALUResultE, ALUOutM,
+                    WriteDataE, WriteDataM, WA3E, WA3M);
+
+    logic MemtoRegW; // Should be MemtoReg ???
+    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM,
+                    MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
+                    WA3M, WA3W);
+
+
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtImm, Out3,  Instr[4], Shamt);
@@ -76,7 +89,7 @@ module datapath(
 
     // ALU logic
     mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
-    alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags);
+    alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 endmodule
 
 
