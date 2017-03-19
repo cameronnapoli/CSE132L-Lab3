@@ -17,7 +17,7 @@ module hazardunit(
     input logic MemtoRegE,
     input logic PCSrcD,
     input logic PCSrcE,
-    input logic PCSrcM,
+    input logic PCSrcM
 
     );
 
