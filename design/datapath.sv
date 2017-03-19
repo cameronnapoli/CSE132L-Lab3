@@ -22,7 +22,7 @@ module datapath(
     input logic BL);
 
     logic stallF;
-    logic BranchTakenE
+    logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
@@ -35,7 +35,7 @@ module datapath(
     regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
-    
+
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
@@ -52,8 +52,23 @@ module datapath(
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
     mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
-    extend ext(Instr[23:0], ImmSrc, ExtImm); //10 
+    extend ext(Instr[23:0], ImmSrc, ExtImm); //10
 
+
+    // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
+    // Need to connect these!!!
+    logic [31:0] RD1E, RD2E, RD3E, ExtendE;
+    logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
+    logic [3:0] ALUControlE;
+    logic BranchE, ALUSrcE, FlagWriteE, CondE;
+    logic [1:0] ImmSrcE;
+
+    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // Need to modify contrl bits
+            MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
+            ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
+            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
+        
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtImm, Out3,  Instr[4], Shamt);
@@ -114,7 +129,7 @@ always_comb
                 5'b11100: shiftedOutput = {readVal1[27:0], readVal1[31:28]};
                 5'b11101: shiftedOutput = {readVal1[28:0], readVal1[31:29]};
                 5'b11110: shiftedOutput = {readVal1[29:0], readVal1[31:30]};
-				5'b11111: 
+				5'b11111:
 					if(bit4) // RRX
 					{
 						shiftedOutput = {carry, readVal1[31:1]};
