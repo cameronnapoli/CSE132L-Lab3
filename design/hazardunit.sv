@@ -1,12 +1,11 @@
 module hazardunit(
-	input logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W,
     output logic StallF,
     output logic StallD,
     output logic FlushD,
     output logic FlushE,
     output logic [1:0] ForwardAE,
     output logic [1:0] ForwardBE,
-<<<<<<< HEAD
+
     input logic Match_1E_M,
     input logic Match_1E_W,
     input logic Match_2E_M,
