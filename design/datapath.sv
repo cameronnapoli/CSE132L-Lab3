@@ -68,10 +68,14 @@ module datapath(
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
+    logic [31:0] SrcAE, SrcBE
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
     logic BranchE, ALUSrcE, FlagWriteE, CondE;
     logic [1:0] ImmSrcE;
+
+    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
+    mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, SrcABE);
 
     regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
