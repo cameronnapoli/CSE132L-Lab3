@@ -64,15 +64,14 @@ module datapath(
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
-    mux2 #(4) writeaddress(InstrD[15:12], 4'b1110, BL, WA); //TODO write address depends on BL
-    mux2 #(32) writedata(Result, PCPlus4, BL, WD); //TODO write data depends on BL
+    mux2 #(4) writeaddress(WA3W, 4'b1110, BL, WA); //TODO write address depends on BL
+    mux2 #(32) writedata(ResultW, PCPlus4, BL, WD); //TODO write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
-    // TODO move to Execute stage?
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
 
@@ -80,18 +79,18 @@ module datapath(
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE;
+    logic [31:0] SrcAE, SrcBE, WriteDataE;
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
     logic BranchE, ALUSrcE, FlagWriteE, CondE;
     logic [1:0] ImmSrcE;
 
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
-    mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, SrcABE);
+    mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
 
     // ALU logic
-    mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
-    alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags); // TODO: Modify
+    mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
+    alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
     regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
