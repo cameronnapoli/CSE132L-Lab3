@@ -97,17 +97,18 @@ module datapath(
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
             FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE, BLD, BLE);
 
-
-    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
-    mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
     //Shift Logic
     mux2 #(32) shamtmux(ExtImmE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
-    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], WriteData, Shamt, SrcBshift, FlagsE[1]);
+    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteDataE, Shamt, Reg, ALUFlags[1]);
+    
+    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
+    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE);
+
     
 
     // ALU logic
-    mux2 #(32) srcbmux(SrcBshift, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
+    mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
 
