@@ -12,7 +12,8 @@ module datapath(
     input logic ALUSrc,
     input logic [3:0] ALUControl,
     input logic MemtoReg,
-    input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW, // Why are 4 PC Src's here as input
+
+    input logic PCSrcD, // Modified PCSrc for Pipeline Registers
 
     output logic [3:0] ALUFlags,
     output logic [31:0] PCF,
@@ -32,13 +33,17 @@ module datapath(
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
     mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed
+
+    /****** Instruction Fetch ******/
     regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
+
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
+    /****** Instruction Decode ******/
+    logic [31:0] InstrD; // TODO connect this to output
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
-
 
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
@@ -48,13 +53,13 @@ module datapath(
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
-        WA, WD, PCPlus8,
+        WA, WD, PCPlus8, //TODO Switch to PCPlus4 ???
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
-    mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
+
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
-
+    /****** Instruction Execute ******/
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
@@ -64,23 +69,19 @@ module datapath(
     logic [1:0] ImmSrcE;
 
     regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
-            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // Need to modify control bits
+            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
             FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
 
+    /****** Instruction MEM ******/
+    logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
     logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
     logic [31:0] WriteDataM, ALUOutM, WA3M;
-    regEXMEM xmreg(clk, PCSrcE, PCSrcM, RegWriteE, RegWriteM, MemtoRegE, //12
-                    MemtoRegM, MemWriteE, MemWriteM, ALUResultE, ALUOutM,
+    regEXMEM xmreg(clk, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
+                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteE & CondExE, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
-
-    logic MemtoRegW; // Should be MemtoReg ???
-    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
-                    MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
-                    WA3M, WA3W);
-
 
 
     //Shift Logic
@@ -90,6 +91,15 @@ module datapath(
     // ALU logic
     mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
     alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags); // TODO: Modify
+
+    /****** Instruction Write Back ******/
+    logic PCSrcW;
+    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
+                    MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
+                    WA3M, WA3W);
+
+    logic MemtoRegW;
+    mux2 #(32) resmux(ALUResult, ReadDataW, MemtoRegW, Result); // TODO modify this, 21?
 endmodule
 
 
