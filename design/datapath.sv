@@ -74,6 +74,11 @@ module datapath(
 
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
+    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
+            MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
+            ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
+            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
 
     /****** Instruction Execute ******/
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
@@ -87,31 +92,31 @@ module datapath(
 
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
     mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
-
+    //Shift Logic
+    mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
+	shifter shftr(InstrD[6:5], InstrD[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);// Needs changes
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
-    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
-            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
-            MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
-            ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
+
 
 
     /****** Instruction MEM ******/
     logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
-    logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
-    logic [31:0] WriteDataM, ALUOutM, WA3M;
+    logic PCSrcM, RegWriteM, MemtoRegM, MemtoRegM, MemWriteM;
+    logic [31:0] ALUOutM, WriteDataE;
+
     regEXMEM xmreg(clk, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteE & CondExE, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
+    logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
+    logic [31:0] WriteDataM, ALUOutM, WA3M;
 
 
-    //Shift Logic
-    mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
-	shifter shftr(InstrD[6:5], InstrD[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]); // Implement the shifter in DECODE or EXE?
+
+
 
 
     /****** Instruction Write Back ******/
