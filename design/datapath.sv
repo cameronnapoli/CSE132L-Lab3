@@ -17,7 +17,7 @@ module datapath(
 
     output logic [3:0] ALUFlags,
     output logic [31:0] PCF,
-    input logic [31:0] InstrF,
+    input logic [31:0] InstrD,
     output logic [31:0] ALUResult, WriteData,
     input logic [31:0] ReadData,
     input logic BL);
