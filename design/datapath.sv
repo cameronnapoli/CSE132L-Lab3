@@ -84,7 +84,7 @@ module datapath(
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE, WriteDataE;
+    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
     logic BranchE, ALUSrcE, FlagWriteE, CondE;
@@ -102,9 +102,12 @@ module datapath(
     mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
     //Shift Logic
     mux2 #(32) shamtmux(ExtImmE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
-    shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);//Still Needs changes
+    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], WriteData, Shamt, SrcBshift, FlagsE[1]);
+    //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteDataE, Shamt, Reg, ALUFlags[1]);
+    
+
     // ALU logic
-    mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
+    mux2 #(32) srcbmux(SrcBshift, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
 
