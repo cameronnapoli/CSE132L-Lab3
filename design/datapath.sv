@@ -32,7 +32,7 @@ module datapath(
 
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
-    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed
+    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
 
     /****** Instruction Fetch ******/
     regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
@@ -41,7 +41,7 @@ module datapath(
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
     /****** Instruction Decode ******/
-    logic [31:0] InstrD; // TODO connect this to output
+    logic [31:0] InstrD; 
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
@@ -53,7 +53,7 @@ module datapath(
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
-        WA, WD, PCPlus8, //TODO Switch to PCPlus4 ???
+        WA, WD, PCPlus4, 
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
 
