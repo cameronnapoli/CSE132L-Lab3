@@ -2,7 +2,7 @@ module condlogic(input logic clk, reset,
     input logic [3:0] Cond,
     input logic [3:0] ALUFlags,
     input logic [1:0] FlagW,
-    input logic PCS, RegW, MemW,
+    input logic PCS, RegW, MemW,Branch,
     output logic PCSrc, RegWrite, MemWrite
     );
 
@@ -20,6 +20,7 @@ module condlogic(input logic clk, reset,
     assign FlagWrite = FlagW & {2{CondEx}};
     assign RegWrite = RegW & CondEx;
     assign MemWrite = MemW & CondEx;
-    assign PCSrc = PCS & CondEx;
+    assign PCSrc = (PCS & CondEx) | (Branch & CondEx);
+
 endmodule
 
