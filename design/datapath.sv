@@ -99,6 +99,24 @@ module datapath(
                     WA3M, WA3W);
 
     mux2 #(32) resmux(ALUResult, ReadDataW, MemtoRegW, Result); // TODO modify this, 21?
+
+    logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
+    // TODO need to change the names of these wires!!!
+    match m1e_m(RA1E, WA3M, Match_1E_M);
+    match m1e_1(RA1E, WA3W, Match_1E_W);
+    match m2e_m(RA2E, WA3M, Match_2E_M);
+    match m12e_w(RA2E, WA3W, Match_2E_W);
+    //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
+    logic match12d_e1, match12d_e2;
+    match m12d_e1(RA1D, WA3E, match12d_e1);
+    match m12d_e2(RA2D, WA3E, match12d_e2);
+    assign Match_12D_E  = match12d_e1 | match12d_e2;
+
+    /****** Hazard Unit ******/
+    hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
+                ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
+                Match_2E_W, Match_12D_E, BranchTakenE,  RegWriteM,
+                RegWriteW, MemtoRegE, PCSrcD, PCSrcE, PCSrcM, PCSrcW);
 endmodule
 
 
