@@ -30,11 +30,12 @@ module datapath(
     input logic [3:0] Flags;
 
     // For DMEM
+    output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM,
 
     input logic BLD);
- 
+
     logic BLW; //For Branch-link
 
 
