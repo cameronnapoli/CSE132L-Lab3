@@ -28,7 +28,7 @@ module arm(
     //     ALUFlags, PC, Instr, InstrDController,
     //     ALUResult, WriteData, ReadData, BL);
 
-    logc BranchD; // Needs to be added to controller
+    logic BranchD; // Needs to be added to controller
     // Needs FlagWriteE, CondE, FlagsE, ALUFlags to go to condlogic
     // Need Flags, CondExe from controller
 
