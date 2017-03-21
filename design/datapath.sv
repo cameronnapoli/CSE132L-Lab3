@@ -69,13 +69,13 @@ module datapath(
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
-    mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //TODO write address depends on BL
-    mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //TODO write data depends on BL
+    mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //Good?
+    mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //Good?
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
         WA, WD, PCPlus4,
-        SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
+        SrcA, WriteData, Out3); //9 
 
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
@@ -91,7 +91,7 @@ module datapath(
     logic [1:0] ImmSrcE;
     logic BLE;
 
-    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+    regIDEX dxreg(clk, flushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
@@ -101,8 +101,8 @@ module datapath(
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
     mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
     //Shift Logic
-    mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
-	shifter shftr(InstrD[6:5], InstrD[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);// Needs changes
+    mux2 #(32) shamtmux(ExtImmE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
+    shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]);//Still Needs changes
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify

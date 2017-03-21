@@ -33,6 +33,8 @@ endmodule
 module regIDEX( // Simple just uses flush
     input logic clk,
     input logic flushE,
+    input logic [31:0] InstrD,
+    output logic [31:0] InstrE,
     input logic [31:0] RD1D,
     output logic [31:0] RD1E,
     input logic [31:0] RD2D,
@@ -69,6 +71,7 @@ module regIDEX( // Simple just uses flush
 always @(posedge clk)
 begin
     if(flushE) begin
+        InstrE <= 32'h0;
         RD1E <= 32'h0;
         RD2E <= 32'h0;
         RD3E <= 32'h0;
@@ -87,6 +90,7 @@ begin
         BLE <= 1'b0;
     end
     else begin
+        InstrD <= InstrE;
         RD1E <= RD1D;
         RD2E <= RD2D;
         RD3E <= RD3D;
