@@ -106,6 +106,7 @@ module datapath(
     logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
     logic PCSrcM, RegWriteM, MemtoRegM, MemtoRegM, MemWriteM;
+    logic Wa3M;
     logic [31:0] ALUOutM, WriteDataE;
 
     regEXMEM xmreg(clk, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
@@ -113,6 +114,9 @@ module datapath(
                     WriteDataE, WriteDataM, WA3E, WA3M);
     logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
     logic [31:0] WriteDataM, ALUOutM, WA3M;
+
+    // This module outputs ALUResultM, WriteDataM, and MemWriteM
+    // Inputs ReadDataM
 
 
 
