@@ -29,6 +29,7 @@ module hazardunit(
 //Match_2E_W = (RA2E == WA3W)
 
 //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
+
 logic LDRstall, PCWrPendingF;
 //Forwarding
 always_comb begin

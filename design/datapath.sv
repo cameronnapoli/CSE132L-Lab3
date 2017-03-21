@@ -14,13 +14,13 @@ module datapath(
     // For control unit
     output logic [31:0] InstrDCont, //output to controller
     input logic PCSrcD,
-    input logic RegWrite, // RegWriteD
-    input logic MemtoReg, //MemtoRegD
-    // MemWriteD ???
-    input logic [3:0] ALUControl, //ALUControlD
-    // BranchD
-    input logic ALUSrc, //ALUSrcD
-    input logic [1:0] ImmSrc, // ImmSrcD
+    input logic RegWriteD,
+    input logic MemtoRegD,
+    input logic MemWriteD,
+    input logic [3:0] ALUControlD,
+    input logic BranchD,
+    input logic ALUSrcD,
+    input logic [1:0] ImmSrcD,
     input logic [1:0] RegSrcD,
 
     // For condlogic
@@ -29,8 +29,10 @@ module datapath(
     output logic [3:0] FlagsE;
     input logic [3:0] Flags;
 
-    output logic [31:0] ALUResultM, WriteDataM, //ALUResultW, WriteDataW
+    // For DMEM
+    output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM,
+
     input logic BL);
 
     logic stallD;
@@ -44,11 +46,13 @@ module datapath(
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
     mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
 
+
     /****** Instruction Fetch ******/
     regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
 
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
+
 
     /****** Instruction Decode ******/
     logic [31:0] InstrD;
@@ -70,6 +74,7 @@ module datapath(
 
     // TODO move to Execute stage?
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
+
 
     /****** Instruction Execute ******/
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
@@ -94,6 +99,7 @@ module datapath(
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
             FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
 
+
     /****** Instruction MEM ******/
     logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
@@ -108,6 +114,7 @@ module datapath(
     mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
 	shifter shftr(InstrD[6:5], InstrD[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]); // Implement the shifter in DECODE or EXE?
 
+
     /****** Instruction Write Back ******/
     logic PCSrcW, MemtoRegW;
     regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
@@ -116,6 +123,8 @@ module datapath(
 
     mux2 #(32) resmux(ALUResult, ReadDataW, MemtoRegW, Result); // TODO modify this, 21?
 
+
+    /****** Match Modules ******/
     logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
     // TODO need to change the names of these wires!!!
     match m1e_m(RA1E, WA3M, Match_1E_M);

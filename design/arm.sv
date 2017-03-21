@@ -21,11 +21,22 @@ module arm(
         MemWrite, MemtoReg,
 	    BEDmem, BL,
 	    PCSrc);
-    datapath dp(clk, reset,
-        RegSrc, RegWrite, ImmSrc,
-        ALUSrc, ALUControl,
-        MemtoReg, PCSrc,
-        ALUFlags, PC, Instr, InstrDController,
+    // datapath dp(clk, reset,
+    //     RegSrc, RegWrite, ImmSrc,
+    //     ALUSrc, ALUControl,
+    //     MemtoReg, PCSrc,
+    //     ALUFlags, PC, Instr, InstrDController,
+    //     ALUResult, WriteData, ReadData, BL);
+
+    logc BranchD; // Needs to be added to controller
+    // Needs FlagWriteE, CondE, FlagsE, ALUFlags to go to condlogic
+    // Need Flags, CondExe from controller
+
+    datapath dp(clk, reset, PC, Instr, InstrDController,
+        PCSrc, RegWrite, MemtoReg, MemWrite,
+        ALUControl, BranchD, ALUSrc, ImmSrc,
+        RegSrc, ALUFlags, FlagWriteE, CondE, FlagsE, Flags, // Need to fix a few of these
         ALUResult, WriteData, ReadData, BL);
+
 
 endmodule
