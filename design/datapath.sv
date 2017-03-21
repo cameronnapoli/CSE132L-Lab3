@@ -33,7 +33,7 @@ module datapath(
     output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM,
 
-    input logic BL);
+    input logic BLD);
  
     logic BLW; //For Branch-link
 
@@ -68,8 +68,8 @@ module datapath(
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
-    mux2 #(4) writeaddress(WA3W, 4'b1110, BL, WA); //TODO write address depends on BL
-    mux2 #(32) writedata(ResultW, PCPlus4, BL, WD); //TODO write data depends on BL
+    mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //TODO write address depends on BL
+    mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //TODO write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
