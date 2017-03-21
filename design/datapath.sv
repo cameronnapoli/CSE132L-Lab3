@@ -6,14 +6,14 @@
 
 module datapath(
     input logic clk, reset,
-    input logic [1:0] RegSrcD,
-    input logic RegWrite,
-    input logic [1:0] ImmSrc,
-    input logic ALUSrc,
-    input logic [3:0] ALUControl,
-    input logic MemtoReg,
 
-    input logic PCSrcD, // Modified PCSrc for Pipeline Registers
+    input logic PCSrcD,
+    input logic RegWrite, // RegWriteD
+    input logic MemtoReg, //MemtoRegD
+    input logic [1:0] ImmSrc, // ImmSrcD
+    input logic ALUSrc, //ALUSrcD
+    input logic [3:0] ALUControl, //ALUControlD
+    input logic [1:0] RegSrcD,
 
     output logic [3:0] ALUFlags,
     output logic [31:0] PCF, //check
@@ -31,7 +31,6 @@ module datapath(
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
     logic [3:0] RA1, RA2, RA3, WA; //Added RA3, WriteData, Write Address
-
 
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
@@ -53,7 +52,7 @@ module datapath(
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
-    mux2 #(4) writeaddress(InstrF[15:12], 4'b1110, BL, WA); //TODO write address depends on BL
+    mux2 #(4) writeaddress(InstrD[15:12], 4'b1110, BL, WA); //TODO write address depends on BL
     mux2 #(32) writedata(Result, PCPlus4, BL, WD); //TODO write data depends on BL
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
@@ -61,14 +60,14 @@ module datapath(
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
-
+    // TODO move to Execute stage?
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
     /****** Instruction Execute ******/
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE
+    logic [31:0] SrcAE, SrcBE;
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
     logic BranchE, ALUSrcE, FlagWriteE, CondE;

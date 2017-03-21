@@ -13,6 +13,8 @@ module arm(
     logic BL;
     logic [31:12] InstrDController; // Intermediary signal to allow Instr to pass through pipe
 
+    // MemWrite needs to be intercepted
+
     controller c(clk, reset, InstrDController, ALUFlags,
         RegSrc, RegWrite, ImmSrc,
         ALUSrc, ALUControl,

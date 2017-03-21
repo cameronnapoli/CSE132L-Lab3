@@ -58,8 +58,8 @@ module regIDEX( // Simple just uses flush
     output logic ALUSrcE,
     input logic FlagWriteD,
     output logic FlagWriteE,
-    input logic [1:0] ImmSrcD,
-    output logic [1:0] ImmSrcE,
+    input logic [3:0] Flags,
+    output logic [3:0] FlagsE,
     input logic CondD,
     output logic CondE);
 
@@ -80,7 +80,7 @@ begin
         BranchE <= 1'b0;
         ALUSrcE <= 1'b0;
         FlagWriteE <= 1'b0;
-        ImmSrcE <= 1'b0;
+        FlagsE <= 4'b0000;
         CondE <= 1'b0;
     end
     else begin
@@ -97,7 +97,7 @@ begin
         BranchE <= BranchD;
         ALUSrcE <= ALUSrcD;
         FlagWriteE <= FlagWriteD;
-        ImmSrcE <= ImmSrcD;
+        FlagsE <= Flags;
         CondE <= CondD;
     end
 end
@@ -106,6 +106,7 @@ endmodule
 
 module regEXMEM(
     input logic clk,
+
     input logic PCSrcE,
     output logic PCSrcM,
     input logic RegWriteE,
@@ -114,6 +115,7 @@ module regEXMEM(
     output logic MemtoRegM,
     input logic MemWriteE,
     output logic MemWriteM,
+
     input logic [31:0] ALUResultE,
     output logic [31:0] ALUResultM,
     input logic [31:0] WriteDataE,
@@ -137,12 +139,14 @@ endmodule
 
 module regMEMWB(
     input logic clk,
+
     input logic PCSrcM,
     output logic PCSrcW,
     input logic RegWriteM,
     output logic RegWriteW,
     input logic MemtoRegM,
     output logic MemtoRegW,
+    
     input logic [31:0] ReadDataM,
     output logic [31:0] ReadDataW,
     input logic [31:0] ALUOutM,
