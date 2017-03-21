@@ -7,22 +7,30 @@
 module datapath(
     input logic clk, reset,
 
+    // For IMEM
+    output logic [31:0] PCF,
+    input logic [31:0] InstrF,
+
+    // For control unit
+    output logic [31:0] InstrDCont, //output to controller
     input logic PCSrcD,
     input logic RegWrite, // RegWriteD
     input logic MemtoReg, //MemtoRegD
-    input logic [1:0] ImmSrc, // ImmSrcD
-    input logic ALUSrc, //ALUSrcD
+    // MemWriteD ???
     input logic [3:0] ALUControl, //ALUControlD
+    // BranchD
+    input logic ALUSrc, //ALUSrcD
+    input logic [1:0] ImmSrc, // ImmSrcD
     input logic [1:0] RegSrcD,
 
+    // For condlogic
     output logic [3:0] ALUFlags,
-    output logic [31:0] PCF, //check
-    // input logic [31:0] InstrD, // TODO should be InstrF
-    input logic [31:0] InstrF,
-    output logic [31:0] InstrDCont, //output to controller
+    output logic FlagWriteE, CondE;
+    output logic [3:0] FlagsE;
+    input logic [3:0] Flags;
 
-    output logic [31:0] ALUResult, WriteData,
-    input logic [31:0] ReadData,
+    output logic [31:0] ALUResultM, WriteDataM, //ALUResultW, WriteDataW
+    input logic [31:0] ReadDataM,
     input logic BL);
 
     logic stallD;
@@ -76,6 +84,10 @@ module datapath(
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
     mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, SrcABE);
 
+    // ALU logic
+    mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
+    alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags); // TODO: Modify
+
     regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
@@ -95,10 +107,6 @@ module datapath(
     //Shift Logic
     mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
 	shifter shftr(InstrD[6:5], InstrD[4], ALUFlags[1], WriteData, Shamt, Reg, ALUFlags[1]); // Implement the shifter in DECODE or EXE?
-
-    // ALU logic
-    mux2 #(32) srcbmux(Reg, ExtImm, ALUSrc, SrcB); // Instr[25] should be the control...
-    alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
     /****** Instruction Write Back ******/
     logic PCSrcW, MemtoRegW;
