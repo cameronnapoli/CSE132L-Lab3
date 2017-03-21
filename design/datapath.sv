@@ -34,6 +34,9 @@ module datapath(
     input logic [31:0] ReadDataM,
 
     input logic BL);
+ 
+    logic BLW; //For Branch-link
+
 
     logic stallD;
     logic BranchTakenE;
@@ -56,6 +59,7 @@ module datapath(
 
     /****** Instruction Decode ******/
     logic [31:0] InstrD;
+    //get input BLD
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
@@ -74,11 +78,6 @@ module datapath(
 
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
-    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
-            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
-            MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
-            ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE);
 
     /****** Instruction Execute ******/
     // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
@@ -89,6 +88,14 @@ module datapath(
     logic [3:0] ALUControlE;
     logic BranchE, ALUSrcE, FlagWriteE, CondE;
     logic [1:0] ImmSrcE;
+    logic BLE;
+
+    regIDEX dxreg(clk, flushE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+            ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
+            MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
+            ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
+            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE, BLD, BLE);
+
 
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
     mux3 #(32) SrcBEMux(RD2E, ResultW, ALUOutM, ForwardBE, WriteDataE);
@@ -106,10 +113,10 @@ module datapath(
     logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
     logic PCSrcM, RegWriteM, MemtoRegM, MemtoRegM, MemWriteM;
-    logic Wa3M;
+    logic Wa3M, BLM;
     logic [31:0] ALUOutM, WriteDataE;
 
-    regEXMEM xmreg(clk, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
+    regEXMEM xmreg(clk, BLE, BLM, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteE & CondExE, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
     logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
@@ -125,7 +132,7 @@ module datapath(
 
     /****** Instruction Write Back ******/
     logic PCSrcW, MemtoRegW;
-    regMEMWB mwreg(clk, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
+    regMEMWB mwreg(clk, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 
