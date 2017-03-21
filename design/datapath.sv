@@ -16,13 +16,16 @@ module datapath(
     input logic PCSrcD, // Modified PCSrc for Pipeline Registers
 
     output logic [3:0] ALUFlags,
-    output logic [31:0] PCF,
-    input logic [31:0] InstrD,
+    output logic [31:0] PCF, //check
+    // input logic [31:0] InstrD, // TODO should be InstrF
+    input logic [31:0] InstrF,
+    output logic [31:0] InstrDCont, //output to controller
+
     output logic [31:0] ALUResult, WriteData,
     input logic [31:0] ReadData,
     input logic BL);
 
-    logic stallF;
+    logic stallD;
     logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
@@ -41,9 +44,11 @@ module datapath(
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
     /****** Instruction Decode ******/
-    logic [31:0] InstrD; 
+    logic [31:0] InstrD;
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
+
+    assign InstrDCont = InstrD[31:12];
 
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
@@ -53,7 +58,7 @@ module datapath(
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
-        WA, WD, PCPlus4, 
+        WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9 --remember RegWriteW. --WA and WD?
 
 
