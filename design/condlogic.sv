@@ -4,13 +4,12 @@ module condlogic(input logic clk, reset,
     input logic [1:0] FlagW,
     input logic [3:0] FlagsE,
     input logic PCS, RegW, MemW, Branch,
-    output logic FlagsEO,
+    output logic Flags,
     output logic PCSrc, RegWrite, MemWrite, BranchEO
     );
 
     // TODO add logic for Flags
     logic [1:0] FlagWrite;
-    logic [3:0] Flags;
     //logic CondEx;
 
     flopenr #(2)flagreg1(clk, reset, FlagWrite[1],
@@ -24,6 +23,6 @@ module condlogic(input logic clk, reset,
     assign RegWrite = RegW & CondEx;
     assign MemWrite = MemW & CondEx;
     assign BranchEO = Branch & CondEx;
-    assign PCSrc = (PCS & CondEx) //| (Branch & CondEx);
+    assign PCSrc = (PCS & CondEx); //| (Branch & CondEx);
 
 endmodule
