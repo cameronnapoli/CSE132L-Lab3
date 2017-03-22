@@ -177,13 +177,13 @@ module regMEMWB(
 
 always @(posedge clk)
 begin
-    BLW = BLM;
-    PCSrcW = PCSrcM;
-    RegWriteW = RegWriteM;
-    MemtoRegW = MemtoRegM;
-    ReadDataW = ReadDataM;
-    ALUOutW = ALUOutM;
-    WA3W = WA3M;
+    BLW <= BLM;
+    PCSrcW <= PCSrcM;
+    RegWriteW <= RegWriteM;
+    MemtoRegW <= MemtoRegM;
+    ReadDataW <= ReadDataM;
+    ALUOutW <= ALUOutM;
+    WA3W <= WA3M;
 end
 
 
