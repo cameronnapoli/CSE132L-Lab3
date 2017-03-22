@@ -97,7 +97,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
-    logic BranchE, ALUSrcE, FlagWriteE, CondE;
+    logic ALUSrcE, FlagWriteE;
     logic [1:0] ImmSrcE;
     logic BLE;
 
@@ -120,23 +120,19 @@ module datapath( // IO should be good for the most part
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
-    condcheck cndchck(Cond, ALUFlags, CondExE);
-
 
 
 
     /****** Instruction MEM ******/
     logic CondExE; // TODO need to add this as input
     // Add more wires for regEXMEM
-    logic PCSrcM, RegWriteM, MemtoRegM, MemtoRegM, MemWriteM;
+    logic PCSrcM, RegWriteM, MemtoRegM;
     logic Wa3M, BLM;
-    logic [31:0] ALUOutM, WriteDataE;
+    logic [31:0] ALUOutM;
 
-    regEXMEM xmreg(clk, BLE, BLM, (PCSrcE & CondExE) | (BranchE & CondExE) , PCSrcM, RegWriteE & CondExE, //12
-                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteE & CondExE, MemWriteM, ALUResultE, ALUOutM,
+    regEXMEM xmreg(clk, BLE, BLM, PCSrcE, PCSrcM, RegWriteE, //12
+                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteE, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
-    logic PCSrcM, RegWriteM, MemtoRegM, MemWriteM;
-    logic [31:0] WriteDataM, ALUOutM, WA3M;
 
     // This module outputs ALUResultM, WriteDataM, and MemWriteM
     // Inputs ReadDataM
