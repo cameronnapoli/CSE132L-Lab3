@@ -45,7 +45,6 @@ module datapath( // IO should be good for the most part
     logic BLW; // For Branch-link
 
     // DECODE & EXE wires
-    logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
@@ -80,15 +79,15 @@ module datapath( // IO should be good for the most part
 
 
     // next PC logic
-    mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
-    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
+    mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 confirmed
+    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchEO, PCNext2);//2 confirmed
 
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, StallF, PCNext2, PCF); //3 Confirmed
+    regPCPCF pcreg(clk, StallF, PCNext2, PCF); //3 confirmed
 
-    adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
+    adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4 confirmed
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
 
@@ -98,6 +97,7 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
 
+    // TODO: change to Op, Funct, Rd
     assign InstrDCont = InstrD[31:12]; // Outputted to Control Unit
 
     // register file logic
@@ -108,7 +108,7 @@ module datapath( // IO should be good for the most part
 
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8], // Guessing InstrD[11:8] is ra3, if so regfile is correct
+    regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8],
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9
 
@@ -174,7 +174,7 @@ module datapath( // IO should be good for the most part
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
                 ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
-                Match_2E_W, Match_12D_E, BranchTakenE, RegWriteM,
+                Match_2E_W, Match_12D_E, BranchE, RegWriteM, // BranchE or BranchEO?
                 RegWriteW, MemtoRegE, PCSrcD, PCSrcE, PCSrcM, PCSrcW);
 endmodule
 
