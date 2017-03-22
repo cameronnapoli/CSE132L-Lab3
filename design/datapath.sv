@@ -43,16 +43,43 @@ module datapath( // IO should be good for the most part
 
     logic BLW; // For Branch-link
 
+    // EXE & DECODE wires
     logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
     logic [3:0] RA1D, RA2D, WA; //Added RA3, WriteData, Write Address
 
+    logic [31:0] InstrD;
+
+    // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D   TODO:Need to connect these!!!
+    logic [31:0] RD1E, RD2E, RD3E, ExtendE;
+    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
+    logic [3:0] ALUControlE;
+    logic MemtoRegE, ALUSrcE, FlagWriteE, BLE;
+    logic [31:0] InstrE;
+
+    // Forward 3-Mux wires
+    logic ForwardAE, ForwardBE;
+
+    // MEM wires
+    logic PCSrcM, RegWriteM, MemtoRegM;
+    logic WA3M, BLM;
+    logic [31:0] ALUOutM;
+
+    // Write wires
+    logic PCSrcW, MemtoRegW;
+
+    // Hazard unit and match wires
+    logic StallD, StallF;
+    logic FlushD, FlushE;
+    logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
+    logic match12d_e1, match12d_e2;
+
+
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
     mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
-
 
 
 
@@ -64,9 +91,7 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Instruction Decode ******/
-    logic [31:0] InstrD;
     //get input BLD
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
@@ -89,18 +114,7 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Instruction Execute ******/
-    // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D
-    // Need to connect these!!!
-    logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
-    logic MemtoRegE;
-    logic [3:0] ALUControlE;
-    logic ALUSrcE, FlagWriteE;
-    logic BLE;
-    logic [31:0] InstrE;
-
     regIDEX dxreg(clk, FlushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
@@ -112,7 +126,7 @@ module datapath( // IO should be good for the most part
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
-    logic ForwardAE, ForwardBE;
+
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
 
@@ -123,26 +137,16 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Instruction MEM ******/
-    logic CondExE; // TODO may need to remove this
-    // Add more wires for regEXMEM
-    logic PCSrcM, RegWriteM, MemtoRegM;
-    logic Wa3M, BLM;
-    logic [31:0] ALUOutM;
-
     regEXMEM xmreg(clk, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
-    // This module outputs ALUResultM, WriteDataM, and MemWriteM
-    // Inputs ReadDataM
-
+    // This module outputs ALUResultM, WriteDataM, and MemWriteM. Inputs ReadDataM
 
 
 
     /****** Instruction Write Back ******/
-    logic PCSrcW, MemtoRegW;
     regMEMWB mwreg(clk, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
@@ -152,19 +156,14 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Match Modules ******/
-    logic StallD, StallF;
-    logic FlushD, FlushE;
-    logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
-
     match m1e_m(RA1E, WA3M, Match_1E_M); // TODO: RA1E needs to be carried through
     match m1e_1(RA1E, WA3W, Match_1E_W);
     match m2e_m(RA2E, WA3M, Match_2E_M); // TODO: RA2E needs to be carried through
     match m12e_w(RA2E, WA3W, Match_2E_W);
 
     //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
-    logic match12d_e1, match12d_e2;
+
     match m12d_e1(RA1D, WA3E, match12d_e1);
     match m12d_e2(RA2D, WA3E, match12d_e2);
     assign Match_12D_E  = match12d_e1 | match12d_e2;
