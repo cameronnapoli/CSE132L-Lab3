@@ -37,10 +37,11 @@ module datapath( // IO should be good for the most part
     output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM,
 
-    input logic BLD); // What is this???
+    input logic BLD
+    );
 
-    logic BLW; //For Branch-link
 
+    logic BLW; // For Branch-link
 
     logic stallD;
     logic BranchTakenE;
@@ -54,11 +55,15 @@ module datapath( // IO should be good for the most part
     mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
 
 
+
+
     /****** Instruction Fetch ******/
     regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
 
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
+
+
 
 
     /****** Instruction Decode ******/
@@ -67,7 +72,7 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
-    assign InstrDCont = InstrD[31:12];
+    assign InstrDCont = InstrD[31:12]; // Outputed to Control Unit
 
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
@@ -81,6 +86,8 @@ module datapath( // IO should be good for the most part
         SrcA, WriteData, Out3); //9
 
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
+
+
 
 
     /****** Instruction Execute ******/
@@ -109,12 +116,13 @@ module datapath( // IO should be good for the most part
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE);
 
 
-
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
     condcheck cndchck(Cond, ALUFlags, CondExE);
+
+
 
 
     /****** Instruction MEM ******/
@@ -136,8 +144,6 @@ module datapath( // IO should be good for the most part
 
 
 
-
-
     /****** Instruction Write Back ******/
     logic PCSrcW, MemtoRegW;
     regMEMWB mwreg(clk, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
@@ -145,6 +151,8 @@ module datapath( // IO should be good for the most part
                     WA3M, WA3W);
 
     mux2 #(32) resmux(ALUResult, ReadDataW, MemtoRegW, Result); // TODO modify this, 21?
+
+
 
 
     /****** Match Modules ******/
@@ -159,6 +167,7 @@ module datapath( // IO should be good for the most part
     match m12d_e1(RA1D, WA3E, match12d_e1);
     match m12d_e2(RA2D, WA3E, match12d_e2);
     assign Match_12D_E  = match12d_e1 | match12d_e2;
+
 
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct

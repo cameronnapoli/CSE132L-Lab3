@@ -29,7 +29,7 @@ module controller( // IO is done for controller
     logic [1:0] FlagW;
     logic PCS, RegW, MemW;
 
-
+	// Need to modify these to reflect IO changes !!!
     decoder dec(Op[27:26], Funct[25:20], Rd[15:12],
         FlagW, PCS, RegW, MemW,
         MemtoReg, ALUSrc, ImmSrc, RegSrc, ALUControl,

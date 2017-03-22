@@ -13,7 +13,7 @@ module decoder(
     output logic MemtoReg, ALUSrc,
     output logic [1:0] ImmSrc, RegSrc,
     output logic [3:0] ALUControl,
-    output logic ByteEnableImem,
+    output logic ByteEnableDmem,
     output logic BLControl);
 
     logic [11:0] controls;
@@ -53,7 +53,7 @@ module decoder(
         endcase
 
     assign {RegSrc, ImmSrc, ALUSrc, MemtoReg,
-        RegW, MemW, Branch, ALUOp, ByteEnableImem, BLControl} = controls;
+        RegW, MemW, Branch, ALUOp, ByteEnableDmem, BLControl} = controls;
 
     // ALU Decoder
     always_comb

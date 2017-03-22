@@ -20,7 +20,6 @@ module hazardunit(
     input logic PCSrcE,
     input logic PCSrcM,
     input logic PCSrcW
-
     );
 
 //Match_1E_M = (RA1E == WA3M)
