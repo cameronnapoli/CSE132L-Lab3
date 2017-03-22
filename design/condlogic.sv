@@ -25,6 +25,6 @@ module condlogic(
     assign MemWrite = MemW & CondEx;
     assign BranchEO = Branch & CondEx;
     assign PCSrc = (PCS & CondEx); //| (Branch & CondEx);
-    assign BLEO= BLE & CondEx;
+    assign BLEO = BLE & CondEx;
 
 endmodule
