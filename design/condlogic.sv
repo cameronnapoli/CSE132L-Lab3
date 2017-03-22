@@ -1,4 +1,5 @@
-module condlogic(input logic clk, reset,
+module condlogic(
+    input logic clk, reset,
     input logic [3:0] Cond,
     input logic [3:0] ALUFlags,
     input logic [1:0] FlagW,

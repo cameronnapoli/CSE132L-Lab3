@@ -12,7 +12,7 @@ module datapath( // IO should be good for the most part
     input logic [31:0] InstrF,
 
     // For control unit
-    output logic [31:0] InstrDCont,
+    output logic [31:0] InstrDCont, // Change to reflect Op, Funct, Rd
     input logic PCSrcD,
     input logic RegWriteD,
     input logic MemtoRegD,
@@ -23,6 +23,7 @@ module datapath( // IO should be good for the most part
     input logic [1:0] ImmSrcD,
     input logic [1:0] RegSrcD,
     input logic FlagWriteD,
+    input logic BLD,
 
     // For condlogic
     output logic [3:0] CondE,
@@ -36,9 +37,7 @@ module datapath( // IO should be good for the most part
     // For DMEM
     output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
-    input logic [31:0] ReadDataM,
-
-    input logic BLD
+    input logic [31:0] ReadDataM
     );
 
 
@@ -57,7 +56,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
     logic [31:0] ALUResultE;
     logic [3:0] ALUControlE;
-    logic MemtoRegE, ALUSrcE, FlagWriteE, BLE;
+    logic MemtoRegE, ALUSrcE, FlagWriteE;
     logic [31:0] InstrE;
 
     // Forward 3-Mux wires
@@ -172,8 +171,8 @@ module datapath( // IO should be good for the most part
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
                 ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
-                Match_2E_W, Match_12D_E, BranchE, RegWriteM, // BranchE or BranchEO?
-                RegWriteW, MemtoRegE, PCSrcD, PCSrcE, PCSrcM, PCSrcW);
+                Match_2E_W, Match_12D_E, BranchEO, RegWriteM,
+                RegWriteW, MemtoRegE, PCSrcD, PCSrcEO, PCSrcM, PCSrcW);
 endmodule
 
 
