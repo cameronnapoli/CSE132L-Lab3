@@ -29,9 +29,9 @@ module datapath( // IO should be good for the most part
     output logic [3:0] ALUFlagsE,
     output logic [1:0] FlagWE,
     output logic [3:0] FlagsE,
-    output logic PCSrcE, RegWriteE, MemWriteE, BranchE,
+    output logic PCSrcE, RegWriteE, MemWriteE, BranchE, BLE,
     input logic [3:0] FlagsEO,
-    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO,
+    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO,
 
     // For DMEM
     output logic MemWriteM,
@@ -108,7 +108,7 @@ module datapath( // IO should be good for the most part
 
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8],
+    regfile rf(clk, RegWriteW, BLEO, RA1D, RA2D, InstrD[11:8],
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9
 
