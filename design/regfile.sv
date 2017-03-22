@@ -13,25 +13,6 @@ module regfile(
 
     logic [31:0] rf[14:0];
 
-
-    // initial begin
-    //     rf[0] = 32'b0;
-    //     rf[1] = 32'b0;
-    //     rf[2] = 32'b0;
-    //     rf[3] = 32'b0;
-    //     rf[4] = 32'b0;
-    //     rf[5] = 32'b0;
-    //     rf[6] = 32'b0;
-    //     rf[7] = 32'b0;
-    //     rf[8] = 32'b0;
-    //     rf[9] = 32'b0;
-    //     rf[10] = 32'b0;
-    //     rf[11] = 32'b0;
-    //     rf[12] = 32'b0;
-    //     rf[13] = 32'b0;
-    //     rf[14] = 32'b0;
-    // end
-
     // three ported register file
     // read two ports combinationally
     // write third port on rising edge of clock

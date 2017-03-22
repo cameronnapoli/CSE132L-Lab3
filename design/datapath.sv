@@ -28,7 +28,7 @@ module datapath( // IO should be good for the most part
     output logic [3:0] ALUFlagsE,
     output logic [1:0] FlagWE,
     output logic [3:0] FlagsE,
-    output logic PCSE, RegWE, MemWE, BranchE,
+    output logic PCSrcE, RegWriteE, MemWriteE, BranchE,
     input logic [3:0] FlagsEO,
     input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO,
 
@@ -95,7 +95,7 @@ module datapath( // IO should be good for the most part
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
     logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
-    logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
+    logic MemtoRegE;
     logic [3:0] ALUControlE;
     logic ALUSrcE, FlagWriteE;
     logic BLE;
@@ -104,12 +104,12 @@ module datapath( // IO should be good for the most part
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWriteE,/*Flags, FlagsE,*/ CondD, CondE, BLD, BLE);
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE);
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
-    //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteDataE, Shamt, Reg, ALUFlags[1]);
+    //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
@@ -117,7 +117,7 @@ module datapath( // IO should be good for the most part
 
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
-    alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
+    alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlagsE); // TODO: Modify
 
 
 
@@ -129,8 +129,8 @@ module datapath( // IO should be good for the most part
     logic Wa3M, BLM;
     logic [31:0] ALUOutM;
 
-    regEXMEM xmreg(clk, BLE, BLM, PCSrcE, PCSrcM, RegWriteE, //12
-                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteE, MemWriteM, ALUResultE, ALUOutM,
+    regEXMEM xmreg(clk, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
+                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
     // This module outputs ALUResultM, WriteDataM, and MemWriteM
