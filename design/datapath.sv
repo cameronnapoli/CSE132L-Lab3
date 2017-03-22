@@ -99,6 +99,7 @@ module datapath( // IO should be good for the most part
     logic [3:0] ALUControlE;
     logic ALUSrcE, FlagWriteE;
     logic BLE;
+    logic [31:0] InstrE;
 
     regIDEX dxreg(clk, flushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
@@ -145,7 +146,8 @@ module datapath( // IO should be good for the most part
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 
-    mux2 #(32) resmux(ALUResult, ReadDataW, MemtoRegW, Result); // TODO modify this, 21?
+    // TODO: Read Data and ALUout might be backwards
+    mux2 #(32) resmux(ALUOutW, ReadDataW, MemtoRegW, ResultW); // TODO modify this, 21?
 
 
 
@@ -153,9 +155,11 @@ module datapath( // IO should be good for the most part
     /****** Match Modules ******/
     logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
     // TODO: might need to change the names of these wires!!!
-    match m1e_m(RA1E, WA3M, Match_1E_M);
+
+
+    match m1e_m(RA1E, WA3M, Match_1E_M); // TODO: RA1E needs to be carried through
     match m1e_1(RA1E, WA3W, Match_1E_W);
-    match m2e_m(RA2E, WA3M, Match_2E_M);
+    match m2e_m(RA2E, WA3M, Match_2E_M); // TODO: RA2E needs to be carried through
     match m12e_w(RA2E, WA3W, Match_2E_W);
 
     //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
