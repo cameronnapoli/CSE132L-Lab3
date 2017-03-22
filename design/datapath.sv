@@ -4,7 +4,7 @@
 // Noah Correa     83305686
 // Yuen Chong Lai  82761961
 
-module datapath(
+module datapath( // IO should be good for the most part
     input logic clk, reset,
 
     // For IMEM
@@ -27,15 +27,17 @@ module datapath(
     output logic [3:0] CondE,
     output logic [3:0] ALUFlagsE,
     output logic [1:0] FlagWE,
+    output logic [3:0] FlagsE,
     output logic PCSE, RegWE, MemWE, BranchE,
-    input logic PCSrcEO, RegWriteEO, MemWriteEO, CondExE,
+    input logic [3:0] FlagsEO,
+    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO,
 
     // For DMEM
     output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM,
 
-    input logic BLD);
+    input logic BLD); // What is this???
 
     logic BLW; //For Branch-link
 
@@ -76,7 +78,7 @@ module datapath(
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
         WA, WD, PCPlus4,
-        SrcA, WriteData, Out3); //9 
+        SrcA, WriteData, Out3); //9
 
     extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
 
@@ -102,17 +104,17 @@ module datapath(
     mux2 #(32) shamtmux(ExtImmE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteDataE, Shamt, Reg, ALUFlags[1]);
-    
+
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE);
 
-    
+
 
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
-    condcheck cndchck(Cond, ALUFlags, CondExE)
+    condcheck cndchck(Cond, ALUFlags, CondExE);
 
 
     /****** Instruction MEM ******/

@@ -14,19 +14,15 @@ module arm(
     logic [31:12] InstrDController; // Intermediary signal to allow Instr to pass through pipe
 
     // MemWrite needs to be intercepted
-
+    logic [27:26] Op;
+    logic [25:20] Funct;
+    logic [15:12] Rd;
     controller c(clk, reset, InstrDController, ALUFlags,
         RegSrc, RegWrite, ImmSrc,
         ALUSrc, ALUControl,
         MemWrite, MemtoReg,
 	    BEDmem, BL,
 	    PCSrc);
-    // datapath dp(clk, reset,
-    //     RegSrc, RegWrite, ImmSrc,
-    //     ALUSrc, ALUControl,
-    //     MemtoReg, PCSrc,
-    //     ALUFlags, PC, Instr, InstrDController,
-    //     ALUResult, WriteData, ReadData, BL);
 
     logic BranchD; // Needs to be added to controller
     // Needs FlagWriteE, CondE, FlagsE, ALUFlags to go to condlogic
