@@ -33,7 +33,7 @@ endmodule
 module regIDEX( // Simple just uses flush
     input logic clk,
     input logic flushE,
-    input logic [31:0] InstrD,
+    input logic [31:0] InstrD, // Instruction for shifter
     output logic [31:0] InstrE,
     input logic [31:0] RD1D,
     output logic [31:0] RD1E,
@@ -90,7 +90,7 @@ begin
         BLE <= 1'b0;
     end
     else begin
-        InstrD <= InstrE;
+        InstrE <= InstrD;
         RD1E <= RD1D;
         RD2E <= RD2D;
         RD3E <= RD3D;
@@ -149,7 +149,7 @@ endmodule
 
 module regMEMWB(
     input logic clk,
- 
+
     input logic BLM,
     output logic BLW,
     input logic PCSrcM,
@@ -158,7 +158,7 @@ module regMEMWB(
     output logic RegWriteW,
     input logic MemtoRegM,
     output logic MemtoRegW,
-    
+
     input logic [31:0] ReadDataM,
     output logic [31:0] ReadDataW,
     input logic [31:0] ALUOutM,
@@ -167,7 +167,7 @@ module regMEMWB(
     output logic [31:0] WA3W);
 
 always @(posedge clk)
-begin 
+begin
     BLW = BLM;
     PCSrcW = PCSrcM;
     RegWriteW = RegWriteM;
