@@ -43,7 +43,6 @@ module datapath( // IO should be good for the most part
 
     logic BLW; // For Branch-link
 
-    logic stallD;
     logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
@@ -58,7 +57,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 Confirmed
+    regPCPCF pcreg(clk, StallF, PCNext2, PCF); //3 Confirmed
 
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
@@ -70,7 +69,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] InstrD;
     //get input BLD
     //Fetch-Decode Register
-    regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
+    regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
 
     assign InstrDCont = InstrD[31:12]; // Outputted to Control Unit
 
@@ -79,6 +78,7 @@ module datapath( // IO should be good for the most part
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2D); //8 confirmed
     mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //Good?
     mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //Good?
+
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8], // Guessing InstrD[11:8] is ra3, if so regfile is correct
@@ -101,7 +101,7 @@ module datapath( // IO should be good for the most part
     logic BLE;
     logic [31:0] InstrE;
 
-    regIDEX dxreg(clk, flushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+    regIDEX dxreg(clk, FlushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
@@ -112,6 +112,7 @@ module datapath( // IO should be good for the most part
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
+    logic ForwardAE, ForwardBE;
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
 
@@ -153,9 +154,9 @@ module datapath( // IO should be good for the most part
 
 
     /****** Match Modules ******/
+    logic StallD, StallF;
+    logic FlushD, FlushE;
     logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
-    // TODO: might need to change the names of these wires!!!
-
 
     match m1e_m(RA1E, WA3M, Match_1E_M); // TODO: RA1E needs to be carried through
     match m1e_1(RA1E, WA3W, Match_1E_W);
@@ -172,7 +173,7 @@ module datapath( // IO should be good for the most part
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
                 ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
-                Match_2E_W, Match_12D_E, BranchTakenE,  RegWriteM,
+                Match_2E_W, Match_12D_E, BranchTakenE, RegWriteM,
                 RegWriteW, MemtoRegE, PCSrcD, PCSrcE, PCSrcM, PCSrcW);
 endmodule
 
