@@ -24,6 +24,6 @@ module condlogic(input logic clk, reset,
     assign RegWrite = RegW & CondEx;
     assign MemWrite = MemW & CondEx;
     assign BranchEO = Branch & CondEx;
-    assign PCSrc = (PCS & CondEx) | (Branch & CondEx);
+    assign PCSrc = (PCS & CondEx) //| (Branch & CondEx);
 
 endmodule
