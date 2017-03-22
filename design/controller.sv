@@ -15,7 +15,7 @@ module controller(input logic clk, reset,
     input logic [3:0] CondE,
     input logic [3:0] ALUFlagsE,
     input logic [1:0] FlagWE,
-    input logic PCSE, RegWE, MemWE,BranchE);
+    input logic PCSE, RegWE, MemWE, BranchE);
 ////////////////////////
     logic [1:0] FlagW;
     logic PCS, RegW, MemW;

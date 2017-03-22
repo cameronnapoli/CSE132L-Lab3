@@ -24,10 +24,11 @@ module datapath(
     input logic [1:0] RegSrcD,
 
     // For condlogic
-    output logic [3:0] ALUFlags,
-    output logic FlagWriteE, CondE;
-    output logic [3:0] FlagsE;
-    input logic [3:0] Flags;
+    output logic [3:0] CondE,
+    output logic [3:0] ALUFlagsE,
+    output logic [1:0] FlagWE,
+    output logic PCSE, RegWE, MemWE, BranchE,
+    input logic PCSrcEO, RegWriteEO, MemWriteEO, CondExE,
 
     // For DMEM
     output logic MemWriteM,
@@ -111,7 +112,7 @@ module datapath(
     mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
-
+    condcheck cndchck(Cond, ALUFlags, CondExE)
 
 
     /****** Instruction MEM ******/
