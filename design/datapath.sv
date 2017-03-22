@@ -44,7 +44,7 @@ module datapath( // IO should be good for the most part
 
     logic BLW; // For Branch-link
 
-    // EXE & DECODE wires
+    // DECODE & EXE wires
     logic BranchTakenE;
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
@@ -56,6 +56,7 @@ module datapath( // IO should be good for the most part
     // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D   TODO:Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
     logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
+    logic [31:0] ALUResultE;
     logic [3:0] ALUControlE;
     logic MemtoRegE, ALUSrcE, FlagWriteE, BLE;
     logic [31:0] InstrE;
@@ -134,7 +135,7 @@ module datapath( // IO should be good for the most part
 
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
-    alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlagsE); // TODO: Modify
+    alu alu(SrcAE, SrcBE, ALUControl, ALUResultE, ALUFlagsE); // TODO: Modify
 
 
 

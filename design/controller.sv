@@ -23,7 +23,7 @@ module controller( // IO is done for controller
 	input logic FlagsE,
     input logic PCSE, RegWE, MemWE, BranchE,
 	// Condlogic output
-	output logic PCSrcEO, RegWriteEO, MemWriteEo, BranchEO,
+	output logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO,
 	output logic [3:0] flags);
 
     logic [1:0] FlagW;
