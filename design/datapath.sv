@@ -22,6 +22,7 @@ module datapath( // IO should be good for the most part
     input logic ALUSrcD,
     input logic [1:0] ImmSrcD,
     input logic [1:0] RegSrcD,
+    input logic FlagWriteD,
 
     // For condlogic
     output logic [3:0] CondE,
