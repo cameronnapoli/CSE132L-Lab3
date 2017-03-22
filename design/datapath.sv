@@ -12,7 +12,7 @@ module datapath( // IO should be good for the most part
     input logic [31:0] InstrF,
 
     // For control unit
-    output logic [31:0] InstrDCont, //output to controller
+    output logic [31:0] InstrDCont,
     input logic PCSrcD,
     input logic RegWriteD,
     input logic MemtoRegD,
@@ -48,7 +48,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
-    logic [3:0] RA1, RA2, RA3, WA; //Added RA3, WriteData, Write Address
+    logic [3:0] RA1D, RA2D, WA; //Added RA3, WriteData, Write Address
 
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
@@ -58,7 +58,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 confirmed
+    regPCPCF pcreg(clk, stallF, PCNext2, PCF); //3 Confirmed
 
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
@@ -72,59 +72,58 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, flushD, stallD, InstrF, InstrD); //6 Confirmed
 
-    assign InstrDCont = InstrD[31:12]; // Outputed to Control Unit
+    assign InstrDCont = InstrD[31:12]; // Outputted to Control Unit
 
     // register file logic
-    mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1); //7 confirmed
-    mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2); //8 confirmed
+    mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1D); //7 confirmed
+    mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2D); //8 confirmed
     mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //Good?
     mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //Good?
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWriteW, RA1, RA2, InstrD[11:8],
+    regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8], // Guessing InstrD[11:8] is ra3, if so regfile is correct
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9
 
-    extend ext(InstrD[23:0], ImmSrc, ExtImm); //10
+    extend ext(InstrD[23:0], ImmSrcD, ExtImm); //10
 
 
 
 
     /****** Instruction Execute ******/
-    // SrcA -> RD1, WriteData -> RD2, Out3 -> RD3
+    // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D
     // Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
     logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
     logic PCSrcE, RegWriteE, MemtoRegE, MemWriteE;
     logic [3:0] ALUControlE;
     logic ALUSrcE, FlagWriteE;
-    logic [1:0] ImmSrcE;
     logic BLE;
 
     regIDEX dxreg(clk, flushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWriteE, ImmSrcD, ImmSrcE, CondD, CondE, BLD, BLE);
+            FlagWriteE,/*Flags, FlagsE,*/ CondD, CondE, BLD, BLE);
 
     //Shift Logic
-    mux2 #(32) shamtmux(ExtImmE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3,  InstrD[4], Shamt);
+    mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlags[1], WriteDataE, Shamt, Reg, ALUFlags[1]);
 
-    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE);
-    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE);
+    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
+    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
 
 
     // ALU logic
-    mux2 #(32) srcbmux(WriteDataE, ExtImm, ALUSrc, SrcBE); // Instr[25] should be the control...
+    mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlags); // TODO: Modify
 
 
 
 
     /****** Instruction MEM ******/
-    logic CondExE; // TODO need to add this as input
+    logic CondExE; // TODO may need to remove this
     // Add more wires for regEXMEM
     logic PCSrcM, RegWriteM, MemtoRegM;
     logic Wa3M, BLM;
@@ -153,11 +152,12 @@ module datapath( // IO should be good for the most part
 
     /****** Match Modules ******/
     logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
-    // TODO need to change the names of these wires!!!
+    // TODO: might need to change the names of these wires!!!
     match m1e_m(RA1E, WA3M, Match_1E_M);
     match m1e_1(RA1E, WA3W, Match_1E_W);
     match m2e_m(RA2E, WA3M, Match_2E_M);
     match m12e_w(RA2E, WA3W, Match_2E_W);
+
     //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
     logic match12d_e1, match12d_e2;
     match m12d_e1(RA1D, WA3E, match12d_e1);
@@ -238,10 +238,9 @@ always_comb
 endmodule
 
 module match(
-   input logic [3:0] R1,
-   input logic [3:0] R2,
-   output logic eq);
+    input logic [3:0] R1,
+    input logic [3:0] R2,
+    output logic eq);
 
     assign eq = (R1 == R2);
-
 endmodule
