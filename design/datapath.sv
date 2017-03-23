@@ -12,9 +12,13 @@ module datapath( // IO should be good for the most part
     input logic [31:0] InstrF,
 
     // For control unit
+<<<<<<< HEAD
     output logic [27:26] Op,
 	output logic [25:20] Funct,
 	output logic [15:12] Rd,
+=======
+    output logic [31:0] InstrDCont, // Change to reflect Op, Funct, Rd
+>>>>>>> 5847a701a0bfb185210b0c1a8c8ef3da8d7efd46
     input logic PCSrcD,
     input logic RegWriteD,
     input logic MemtoRegD,
@@ -24,67 +28,96 @@ module datapath( // IO should be good for the most part
     input logic ALUSrcD,
     input logic [1:0] ImmSrcD,
     input logic [1:0] RegSrcD,
+    input logic FlagWriteD,
+    input logic BLD,
 
     // For condlogic
     output logic [3:0] CondE,
     output logic [3:0] ALUFlagsE,
     output logic [1:0] FlagWE,
     output logic [3:0] FlagsE,
-    output logic PCSrcE, RegWriteE, MemWriteE, BranchE,
+    output logic PCSrcE, RegWriteE, MemWriteE, BranchE, BLE,
     input logic [3:0] FlagsEO,
-    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO,
+    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO,
 
     // For DMEM
     output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
-    input logic [31:0] ReadDataM,
-
-    input logic BLD
+    input logic [31:0] ReadDataM
     );
 
 
     logic BLW; // For Branch-link
 
-    logic BranchTakenE;
+    // DECODE & EXE wires
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg, WD;
     logic [3:0] RA1D, RA2D, WA; //Added RA3, WriteData, Write Address
 
-    // next PC logic
-    mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 Confirmed
-    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchTakenE, PCNext2);//2 confirmed Needs BranchTakenE
+    logic [31:0] InstrD;
 
+    // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D   TODO:Need to connect these!!!
+    logic [31:0] RD1E, RD2E, RD3E, ExtendE;
+    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
+    logic [31:0] ALUResultE;
+    logic [3:0] ALUControlE;
+    logic MemtoRegE, ALUSrcE, FlagWriteE;
+    logic [31:0] InstrE;
+
+    // Forward 3-Mux wires
+    logic ForwardAE, ForwardBE;
+
+    // MEM wires
+    logic PCSrcM, RegWriteM, MemtoRegM;
+    logic WA3M, BLM;
+    logic [31:0] ALUOutM;
+
+    // Write wires
+    logic PCSrcW, MemtoRegW;
+
+    // Hazard unit and match wires
+    logic StallD, StallF;
+    logic FlushD, FlushE;
+    logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
+    logic match12d_e1, match12d_e2;
+
+
+    // next PC logic
+    mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 confirmed
+    mux2 #(32) pcmux2(PCNext, ALUResultE, BranchEO, PCNext2);//2 confirmed
 
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, StallF, PCNext2, PCF); //3 Confirmed
+    regPCPCF pcreg(clk, StallF, PCNext2, PCF); //3 confirmed
 
-    adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4
+    adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4 confirmed
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
 
 
-
     /****** Instruction Decode ******/
-    logic [31:0] InstrD;
     //get input BLD
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
 
+<<<<<<< HEAD
     assign Op = InstrD[27:26] ;
     assign Funct = InstrD[25:20];
     assign Rd = InstrD[15:12];
+=======
+    // TODO: change to Op, Funct, Rd
+    assign InstrDCont = InstrD[31:12]; // Outputted to Control Unit
+
+>>>>>>> 5847a701a0bfb185210b0c1a8c8ef3da8d7efd46
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1D); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2D); //8 confirmed
-    mux2 #(4) writeaddress(WA3W, 4'b1110, BLW, WA); //Good?
-    mux2 #(32) writedata(ResultW, PCPlus4, BLW, WD); //Good?
 
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
-    regfile rf(clk, RegWriteW, RA1D, RA2D, InstrD[11:8], // Guessing InstrD[11:8] is ra3, if so regfile is correct
+    regfile rf(clk, RegWriteW, BLEO, RA1D, RA2D, InstrD[11:8],
         WA, WD, PCPlus4,
         SrcA, WriteData, Out3); //9
 
@@ -92,60 +125,39 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Instruction Execute ******/
-    // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D
-    // Need to connect these!!!
-    logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
-    logic MemtoRegE;
-    logic [3:0] ALUControlE;
-    logic ALUSrcE, FlagWriteE;
-    logic BLE;
-    logic [31:0] InstrE;
-
     regIDEX dxreg(clk, FlushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE);
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E);
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
     shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
-    logic ForwardAE, ForwardBE;
+
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
     mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
 
 
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
-    alu alu(SrcAE, SrcBE, ALUControl, ALUResult, ALUFlagsE); // TODO: Modify
-
+    alu alu(SrcAE, SrcBE, ALUControl, ALUResultE, ALUFlagsE); // TODO: Modify
 
 
 
     /****** Instruction MEM ******/
-    logic CondExE; // TODO may need to remove this
-    // Add more wires for regEXMEM
-    logic PCSrcM, RegWriteM, MemtoRegM;
-    logic Wa3M, BLM;
-    logic [31:0] ALUOutM;
-
     regEXMEM xmreg(clk, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
-    // This module outputs ALUResultM, WriteDataM, and MemWriteM
-    // Inputs ReadDataM
-
+    // This module outputs ALUResultM, WriteDataM, and MemWriteM. Inputs ReadDataM
 
 
 
     /****** Instruction Write Back ******/
-    logic PCSrcW, MemtoRegW;
     regMEMWB mwreg(clk, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
@@ -155,19 +167,14 @@ module datapath( // IO should be good for the most part
 
 
 
-
     /****** Match Modules ******/
-    logic StallD, StallF;
-    logic FlushD, FlushE;
-    logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
-
     match m1e_m(RA1E, WA3M, Match_1E_M); // TODO: RA1E needs to be carried through
     match m1e_1(RA1E, WA3W, Match_1E_W);
     match m2e_m(RA2E, WA3M, Match_2E_M); // TODO: RA2E needs to be carried through
     match m12e_w(RA2E, WA3W, Match_2E_W);
 
     //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
-    logic match12d_e1, match12d_e2;
+
     match m12d_e1(RA1D, WA3E, match12d_e1);
     match m12d_e2(RA2D, WA3E, match12d_e2);
     assign Match_12D_E  = match12d_e1 | match12d_e2;
@@ -176,8 +183,8 @@ module datapath( // IO should be good for the most part
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
                 ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
-                Match_2E_W, Match_12D_E, BranchTakenE, RegWriteM,
-                RegWriteW, MemtoRegE, PCSrcD, PCSrcE, PCSrcM, PCSrcW);
+                Match_2E_W, Match_12D_E, BranchEO, RegWriteM,
+                RegWriteW, MemtoRegE, PCSrcD, PCSrcEO, PCSrcM, PCSrcW);
 endmodule
 
 

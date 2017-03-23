@@ -65,7 +65,12 @@ module regIDEX( // Simple just uses flush
     input logic CondD,
     output logic CondE,
     input logic BLD,
-    output logic BLE);
+    output logic BLE,
+    input logic [3:0] RA1D,
+    output logic [3:0] RA1E,
+    input logic [3:0] RA2D,
+    output logic [3:0] RA2E
+);
 
 //Implement Flush functionality
 always @(posedge clk)
@@ -88,6 +93,8 @@ begin
         FlagsE <= 4'b0000;
         CondE <= 1'b0;
         BLE <= 1'b0;
+        RA1E <= 4'b0;
+        RA2E <= 4'b0;
     end
     else begin
         InstrE <= InstrD;
@@ -107,6 +114,8 @@ begin
         FlagsE <= Flags;
         CondE <= CondD;
         BLE <= BLD;
+        RA1E <= RA1D;
+        RA2E <= RA2D;
     end
 end
 endmodule
@@ -168,13 +177,13 @@ module regMEMWB(
 
 always @(posedge clk)
 begin
-    BLW = BLM;
-    PCSrcW = PCSrcM;
-    RegWriteW = RegWriteM;
-    MemtoRegW = MemtoRegM;
-    ReadDataW = ReadDataM;
-    ALUOutW = ALUOutM;
-    WA3W = WA3M;
+    BLW <= BLM;
+    PCSrcW <= PCSrcM;
+    RegWriteW <= RegWriteM;
+    MemtoRegW <= MemtoRegM;
+    ReadDataW <= ReadDataM;
+    ALUOutW <= ALUOutM;
+    WA3W <= WA3M;
 end
 
 
