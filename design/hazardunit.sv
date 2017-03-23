@@ -54,7 +54,7 @@ always_comb begin
 	//IF LDR and WA3E (in execute stage) Matches RA1D or RA2D
 	//Then Stall in Decode Stage.(FlushE, stallD, stallF)
 	//Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
-	LDRstall = Match_12D_E | MemtoRegE; //TODO & here???
+	LDRstall = Match_12D_E & MemtoRegE; 
 
 	//Control Hazards 437
 	PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
