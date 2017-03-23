@@ -8,13 +8,14 @@ module decoder(
     input logic [1:0] Op,
     input logic [5:0] Funct,
     input logic [3:0] Rd,
-    output logic [1:0] FlagW,
-    output logic PCS, RegW, MemW,
-    output logic MemtoReg, ALUSrc,
-    output logic [1:0] ImmSrc, RegSrc,
-    output logic [3:0] ALUControl,
-    output logic ByteEnableDmem,
-    output logic BLControl);
+
+    // output logic [1:0] FlagW,
+    // output logic PCS, RegW, MemW,
+    // output logic MemtoReg, ALUSrc,
+    // output logic [1:0] ImmSrc, RegSrc,
+    // output logic [3:0] ALUControl,
+    // output logic ByteEnableDmem,
+    // output logic BLControl);
 
     logic [11:0] controls;
     logic Branch, ALUOp;

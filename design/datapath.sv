@@ -12,7 +12,9 @@ module datapath( // IO should be good for the most part
     input logic [31:0] InstrF,
 
     // For control unit
-    output logic [31:0] InstrDCont,
+    output logic [27:26] Op,
+	output logic [25:20] Funct,
+	output logic [15:12] Rd,
     input logic PCSrcD,
     input logic RegWriteD,
     input logic MemtoRegD,
@@ -71,8 +73,9 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
 
-    assign InstrDCont = InstrD[31:12]; // Outputted to Control Unit
-
+    assign Op = InstrD[27:26] ;
+    assign Funct = InstrD[25:20];
+    assign Rd = InstrD[15:12];
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1D); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2D); //8 confirmed
