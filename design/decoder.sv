@@ -4,7 +4,7 @@
 // Noah Correa     83305686
 // Yuen Chong Lai  82761961
 
-module decoder(
+module decoder( // Should be Gucci...?
     input logic [1:0] Op,
     input logic [5:0] Funct,
     input logic [3:0] Rd,

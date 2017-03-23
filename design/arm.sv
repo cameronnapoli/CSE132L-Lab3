@@ -1,22 +1,18 @@
 module arm(
     input logic clk, reset,
-    output logic [31:0] PC,
-    input logic [31:0] Instr,
-    output logic MemWrite,
-    output logic [31:0] ALUResult, WriteData,
-    input logic [31:0] ReadData,
-    output logic BEDmem);
+    output logic [31:0] PCF, // {datapath} O to imem
+    input logic [31:0] InstrF, // {datapath} I from imem
+    output logic MemWriteM, // {datapath} O to datapath
+    output logic [31:0] ALUResultM, WriteDataM, // {datapath} O to dmem
+    output logic BEDmem); // {datapath} to dmem
 
     logic [3:0] ALUFlags, ALUControl;
     logic RegWrite, ALUSrc, MemtoReg, PCSrc;
     logic [1:0] RegSrc, ImmSrc;
     logic BL;
-    logic [31:12] InstrDController; // Intermediary signal to allow Instr to pass through pipe
+    logic [31:0] InstrD; // Intermediary signal to allow Instr to pass through pipe
 
     // MemWrite needs to be intercepted
-    logic [27:26] Op;
-    logic [25:20] Funct;
-    logic [15:12] Rd;
     controller c(clk, reset, InstrDController, ALUFlags,
         RegSrc, RegWrite, ImmSrc,
         ALUSrc, ALUControl,

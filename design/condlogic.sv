@@ -19,7 +19,7 @@ module condlogic(
         ALUFlags[1:0], Flags[1:0]);
 
     // write controls are conditional
-    condcheck cc(Cond, Flags, CondEx);
+    condcheck cc(Cond, ALUFlags, CondEx);
     assign FlagWrite = FlagW & {2{CondEx}};
     assign RegWrite = RegW & CondEx;
     assign MemWrite = MemW & CondEx;

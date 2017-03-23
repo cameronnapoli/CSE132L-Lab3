@@ -98,7 +98,7 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
 
-    assign Op = InstrD[27:26] ;
+    assign Op = InstrD[27:26];
     assign Funct = InstrD[25:20];
     assign Rd = InstrD[15:12];
 
