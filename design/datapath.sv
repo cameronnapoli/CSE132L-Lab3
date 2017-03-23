@@ -62,11 +62,12 @@ module datapath( // IO should be good for the most part
     logic [31:0] InstrE;
 
     // Forward 3-Mux wires
-    logic ForwardAE, ForwardBE;
+    logic [1:0] ForwardAE, ForwardBE;
 
     // MEM wires
     logic PCSrcM, RegWriteM, MemtoRegM;
-    logic WA3M, BLM;
+    logic [31:0] WA3M;
+    logic BLM;
     logic [31:0] ALUOutM;
 
     // Write wires
