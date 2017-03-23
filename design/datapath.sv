@@ -24,7 +24,7 @@ module datapath( // IO should be good for the most part
     input logic ALUSrcD,
     input logic [1:0] ImmSrcD,
     input logic [1:0] RegSrcD,
-    input logic FlagWriteD,
+    input logic [1:0] FlagWriteD,
     input logic BLD,
 
     // For condlogic
@@ -55,10 +55,11 @@ module datapath( // IO should be good for the most part
 
     // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D   TODO:Need to connect these!!!
     logic [31:0] RD1E, RD2E, RD3E, ExtendE;
-    logic [31:0] SrcAE, SrcBE, WriteDataE, SrcBshift;
+    logic [31:0] SrcAE, SrcBE, WriteData, WriteDataE, SrcBshift;
     logic [31:0] ALUResultE;
     logic [3:0] ALUControlE;
-    logic MemtoRegE, ALUSrcE, FlagWriteE;
+    logic MemtoRegE, ALUSrcE;
+    logic [1:0] FlagWriteE;
     logic [31:0] InstrE;
 
     // Forward 3-Mux wires
@@ -71,6 +72,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] ALUOutM, ALUOutW;
 
     // Write wires
+    logic [31:0] ReadDataW;
     logic PCSrcW, MemtoRegW;
 
     // Hazard unit and match wires
@@ -126,7 +128,7 @@ module datapath( // IO should be good for the most part
 
     //Shift Logic
     mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
-    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]);
+    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]); // TODO Change second FlagsE to output of shofter
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
 
@@ -136,7 +138,7 @@ module datapath( // IO should be good for the most part
 
     // ALU logic
     mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
-    alu alu(SrcAE, SrcBE, ALUControl, ALUResultE, ALUFlagsE); // TODO: Modify
+    alu alu(SrcAE, SrcBE, ALUControlE, ALUResultE, ALUFlagsE); // TODO: Modify
 
 
 
