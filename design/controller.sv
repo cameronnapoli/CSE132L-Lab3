@@ -23,7 +23,7 @@ module controller( // IO is done for controller
     input logic [3:0] CondE,
     input logic [3:0] ALUFlagsE,
     input logic [1:0] FlagWE,
-	input logic FlagsE,
+	input logic [3:0] FlagsE,
     input logic PCSE, RegWE, MemWE, BranchE, BLE,
 	// Condlogic output
 	output logic [3:0] Flags,
