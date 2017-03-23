@@ -93,7 +93,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, StallF, PCNext2, PCFI); //3 confirmed
+    regPCPCF pcreg(clk, reset, StallF, PCNext2, PCFI); //3 confirmed
     flopr #(32) resetreg(clk, reset, PCFI, PCF);
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4 confirmed
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
@@ -103,7 +103,7 @@ module datapath( // IO should be good for the most part
     /****** Instruction Decode ******/
     //get input BLD
     //Fetch-Decode Register
-    regIFID fdreg(clk, FlushD, StallD, InstrF, InstrD); //6 Confirmed
+    regIFID fdreg(clk, FlushD | reset, StallD, InstrF, InstrD); //6 Confirmed
 
     assign Op = InstrD[27:26];
     assign Funct = InstrD[25:20];
@@ -124,7 +124,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Execute ******/
-    regIDEX dxreg(clk, FlushE, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
+    regIDEX dxreg(clk, FlushE | reset, InstrD, InstrE, SrcA, RD1E, WriteData, RD2E, Out3, RD3E, // 11
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
@@ -149,7 +149,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction MEM ******/
-    regEXMEM xmreg(clk, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
+    regEXMEM xmreg(clk, reset, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUOutM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
@@ -158,7 +158,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Write Back ******/
-    regMEMWB mwreg(clk, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
+    regMEMWB mwreg(clk, reset, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
                     MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 

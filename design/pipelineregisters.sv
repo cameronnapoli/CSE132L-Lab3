@@ -1,13 +1,16 @@
 module regPCPCF(
-    input logic clk,
+    input logic clk, reset,
     input logic stallF,
     input logic [31:0] PC,
     output logic [31:0] PCF
     );
-always @(posedge clk)
-begin
-if (~stallF)
-    PCF <= PC;
+always @(posedge clk) begin
+    if (reset) begin
+        PCF <= 32'b0;
+    end
+    else if (~stallF) begin
+        PCF <= PC;
+    end
 end
 endmodule
 
@@ -122,7 +125,7 @@ endmodule
 
 
 module regEXMEM(
-    input logic clk,
+    input logic clk, reset,
     input logic BLE,
     output logic BLM,
     input logic PCSrcE,
@@ -143,21 +146,33 @@ module regEXMEM(
 
 always @(posedge clk)
 begin
-    BLM <= BLE;
-    PCSrcM <= PCSrcE;
-    RegWriteM <= RegWriteE;
-    MemtoRegM <= MemtoRegE;
-    MemWriteM <= MemWriteE;
-    ALUResultM <= ALUResultE;
-    WriteDataM <= WriteDataE;
-    WA3M <= WA3E;
+    if (reset) begin
+        BLM <= 1'b0;
+        PCSrcM <= 1'b0;
+        RegWriteM <= 1'b0;
+        MemtoRegM <= 1'b0;
+        MemWriteM <= 1'b0;
+        ALUResultM <= 32'b0;
+        WriteDataM <= 32'b0;
+        WA3M <= 4'b0;
+    end
+    else begin
+        BLM <= BLE;
+        PCSrcM <= PCSrcE;
+        RegWriteM <= RegWriteE;
+        MemtoRegM <= MemtoRegE;
+        MemWriteM <= MemWriteE;
+        ALUResultM <= ALUResultE;
+        WriteDataM <= WriteDataE;
+        WA3M <= WA3E;
+    end
 end
 
 endmodule
 
 
 module regMEMWB(
-    input logic clk,
+    input logic clk, reset,
 
     input logic BLM,
     output logic BLW,
@@ -177,13 +192,24 @@ module regMEMWB(
 
 always @(posedge clk)
 begin
-    BLW <= BLM;
-    PCSrcW <= PCSrcM;
-    RegWriteW <= RegWriteM;
-    MemtoRegW <= MemtoRegM;
-    ReadDataW <= ReadDataM;
-    ALUOutW <= ALUOutM;
-    WA3W <= WA3M;
+    if (reset) begin
+        BLW <= 1'b0;
+        PCSrcW <= 1'b0;
+        RegWriteW <= 1'b0;
+        MemtoRegW <= 1'b0;
+        ReadDataW <= 32'b0;
+        ALUOutW <= 32'b0;
+        WA3W <= 4'b0;
+    end
+    else begin
+        BLW <= BLM;
+        PCSrcW <= PCSrcM;
+        RegWriteW <= RegWriteM;
+        MemtoRegW <= MemtoRegM;
+        ReadDataW <= ReadDataM;
+        ALUOutW <= ALUOutM;
+        WA3W <= WA3M;
+    end
 end
 
 
