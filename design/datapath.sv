@@ -70,7 +70,7 @@ module datapath( // IO should be good for the most part
     logic PCSrcM, RegWriteM, MemtoRegM;
     logic [3:0] WA3E, WA3M, WA3W, RA1E, RA2E;
     logic BLM;
-    logic [31:0] ALUOutM, ALUOutW;
+    logic [31:0] ALUOutW;
 
     // Write wires
     logic [31:0] ReadDataW;
@@ -139,8 +139,8 @@ module datapath( // IO should be good for the most part
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
 
-    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUOutM, ForwardAE, SrcAE); //14
-    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUOutM, ForwardBE, WriteDataE); //15
+    mux3 #(32) SrcAEMux(RD1E, ResultW, ALUResultM, ForwardAE, SrcAE); //14
+    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUResultM, ForwardBE, WriteDataE); //15
 
 
     // ALU logic
@@ -151,7 +151,7 @@ module datapath( // IO should be good for the most part
 
     /****** Instruction MEM ******/
     regEXMEM xmreg(clk, reset, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
-                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUOutM,
+                    RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUResultM,
                     WriteDataE, WriteDataM, WA3E, WA3M);
 
     // This module outputs ALUResultM, WriteDataM, and MemWriteM. Inputs ReadDataM
@@ -160,7 +160,7 @@ module datapath( // IO should be good for the most part
 
     /****** Instruction Write Back ******/
     regMEMWB mwreg(clk, reset, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
-                    MemtoRegW, ReadDataM, ReadDataW, ALUOutM, ALUOutW, //ALUResult, WriteData, ReadData,
+                    MemtoRegW, ReadDataM, ReadDataW, ALUResultE, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 
     // TODO: Read Data and ALUout might be backwards

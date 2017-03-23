@@ -45,7 +45,7 @@ module arm(
         RegSrcD, FlagWriteD, BLD,
         // For condlogic
         CondE, ALUFlagsE, FlagWriteE, FlagsE,
-        PCSrcE, RegWriteE, MemWriteE, BranchE, BLE,
+        PCSE, RegWriteE, MemWriteE, BranchE, BLE,
         FlagsEO,
         PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO,
         // For DMEM

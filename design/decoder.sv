@@ -73,5 +73,6 @@ module decoder( // Should be Gucci...?
         end
 
     // PC Logic
+    assign BranchD = Branch;
     assign PCS = ((Rd == 4'b1111) & RegW) | Branch;
 endmodule
