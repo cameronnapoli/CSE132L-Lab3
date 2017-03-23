@@ -55,10 +55,18 @@ always_comb begin
 
 	//Control Hazards 437
 	PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
+
+    // DISABLED HAZARD UNIT FOR TESTING
+    StallD = 1'b0;
+	StallF = 1'b0;
+	FlushE = 1'b0;
+	FlushD = 1'b0;
+    /*
 	StallD = LDRstall;
 	StallF = LDRstall | PCWrPendingF;
 	FlushE = LDRstall | BranchTakenE;
 	FlushD = PCWrPendingF | PCSrcW | BranchTakenE;
+    */
 
 end
 

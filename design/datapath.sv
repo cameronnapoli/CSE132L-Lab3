@@ -85,6 +85,11 @@ module datapath( // IO should be good for the most part
 
     logic TempWire;
 
+    always_comb begin
+        Op <= InstrD[27:26];
+        Funct <= InstrD[25:20];
+        Rd <= InstrD[15:12];
+    end
 
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 confirmed
@@ -105,10 +110,6 @@ module datapath( // IO should be good for the most part
     //Fetch-Decode Register
     regIFID fdreg(clk, FlushD | reset, StallD, InstrF, InstrD); //6 Confirmed
 
-    assign Op = InstrD[27:26];
-    assign Funct = InstrD[25:20];
-    assign Rd = InstrD[15:12];
-
     // register file logic
     mux2 #(4) ra1mux(InstrD[19:16], 4'b1111, RegSrcD[0], RA1D); //7 confirmed
     mux2 #(4) ra2mux(InstrD[3:0], InstrD[15:12], RegSrcD[1], RA2D); //8 confirmed
@@ -116,7 +117,7 @@ module datapath( // IO should be good for the most part
     // clk, we, ra1, ra2, ra3,
     // wa, wd3, r15, rd1, rd2, rd3
     regfile rf(clk, RegWriteW, BLEO, RA1D, RA2D, InstrD[11:8],
-        WA, WD, PCPlus4,
+        WA3W, ResultW, PCPlus4,
         SrcA, WriteData, Out3); //9
 
     extend ext(InstrD[23:0], ImmSrcD, ExtImm); //10
@@ -128,7 +129,7 @@ module datapath( // IO should be good for the most part
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E);
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E);
 
     //Shift Logic
 
@@ -143,7 +144,7 @@ module datapath( // IO should be good for the most part
 
 
     // ALU logic
-    mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrc, SrcBE); // Instr[25] should be the control...
+    mux2 #(32) srcbmux(WriteDataE, ExtendE, ALUSrcE, SrcBE); // Instr[25] should be the control...
     alu alu(SrcAE, SrcBE, ALUControlE, ALUResultE, ALUFlagsE); // TODO: Modify
 
 
@@ -259,3 +260,21 @@ module match(
 
     assign eq = (R1 == R2);
 endmodule
+
+
+/*
+module match(
+    input logic [3:0] R1,
+    input logic [3:0] R2,
+    output logic eq);
+
+    always_comb begin
+        if (R1 == R2) begin
+            eq <= 1'b1;
+        end
+        else begin
+            eq <= 1'b0;
+        end
+    end
+endmodule
+*/

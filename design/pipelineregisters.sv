@@ -72,7 +72,10 @@ module regIDEX( // Simple just uses flush
     input logic [3:0] RA1D,
     output logic [3:0] RA1E,
     input logic [3:0] RA2D,
-    output logic [3:0] RA2E
+    output logic [3:0] RA2E,
+
+    input logic [3:0] WA3D,
+    output logic [3:0] WA3E
 );
 
 //Implement Flush functionality
@@ -98,6 +101,7 @@ begin
         BLE <= 1'b0;
         RA1E <= 4'b0;
         RA2E <= 4'b0;
+        WA3E <= 4'b0;
     end
     else begin
         InstrE <= InstrD;
@@ -119,6 +123,7 @@ begin
         BLE <= BLD;
         RA1E <= RA1D;
         RA2E <= RA2D;
+        WA3E <= WA3D;
     end
 end
 endmodule
