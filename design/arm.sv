@@ -4,6 +4,7 @@ module arm(
     input logic [31:0] InstrF, // {datapath} I from imem
     output logic MemWriteM, // {datapath} O to datapath
     output logic [31:0] ALUResultM, WriteDataM, // {datapath} O to dmem
+    input logic [31:0] ReadDataM,
     output logic BEDmem); // {datapath} to dmem
 
     logic [3:0] ALUFlagsE, ALUControl, CondE, FlagsEO;
@@ -14,7 +15,6 @@ module arm(
 	logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO;
     logic BEDmemE, BranchD, BL;
 
-    logic [31:0] ReadDataM; // DELETE LATER
 
     logic [27:26] Op;
 	logic [25:20] Funct;
