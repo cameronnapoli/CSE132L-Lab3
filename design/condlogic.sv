@@ -11,7 +11,7 @@ module condlogic(
 
     // TODO add logic for Flags
     logic [1:0] FlagWrite;
-    //logic CondEx;
+    logic CondEx;
 
     flopenr #(2)flagreg1(clk, reset, FlagWrite[1],
         ALUFlags[3:2], Flags[3:2]);
