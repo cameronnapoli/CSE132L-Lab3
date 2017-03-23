@@ -82,6 +82,9 @@ module datapath( // IO should be good for the most part
     logic match12d_e1, match12d_e2;
 
 
+    logic TempWire;
+
+
     // next PC logic
     mux2 #(32) pcmux(PCPlus4, ResultW, PCSrcW, PCNext); //1 confirmed
     mux2 #(32) pcmux2(PCNext, ALUResultE, BranchEO, PCNext2);//2 confirmed
@@ -127,8 +130,10 @@ module datapath( // IO should be good for the most part
             FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E);
 
     //Shift Logic
+
+
     mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
-    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, FlagsE[1]); // TODO Change second FlagsE to output of shofter
+    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, TempWire/*FlagsE[1]*/); // TODO Change second FlagsE to output of shofter
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
 
