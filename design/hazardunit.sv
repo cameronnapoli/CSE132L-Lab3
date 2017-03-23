@@ -19,7 +19,9 @@ module hazardunit(
     input logic PCSrcD,
     input logic PCSrcE,
     input logic PCSrcM,
-    input logic PCSrcW
+    input logic PCSrcW,
+
+    input logic resetHit
     );
 
 //Match_1E_M = (RA1E == WA3M)
@@ -30,6 +32,7 @@ module hazardunit(
 //Match_12D_E = (RA1D == WA3E) + (RA2D == WA3E)
 
 logic LDRstall, PCWrPendingF;
+
 //Forwarding
 always_comb begin
 	//Forwarding
@@ -56,17 +59,19 @@ always_comb begin
 	//Control Hazards 437
 	PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
 
-    // DISABLED HAZARD UNIT FOR TESTING
-    StallD = 1'b0;
-	StallF = 1'b0;
-	FlushE = 1'b0;
-	FlushD = 1'b0;
-    /*
-	StallD = LDRstall;
-	StallF = LDRstall | PCWrPendingF;
-	FlushE = LDRstall | BranchTakenE;
-	FlushD = PCWrPendingF | PCSrcW | BranchTakenE;
-    */
+    if (~resetHit) begin
+    	StallD = LDRstall;
+    	StallF = LDRstall | PCWrPendingF;
+    	FlushE = LDRstall | BranchTakenE;
+    	FlushD = PCWrPendingF | PCSrcW | BranchTakenE;
+    end
+    else begin
+        StallD = 1'b0;
+        StallF = 1'b0;
+        FlushE = 1'b0;
+        FlushD = 1'b0;
+    end
+
 
 end
 

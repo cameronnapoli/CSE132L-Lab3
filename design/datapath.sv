@@ -82,7 +82,7 @@ module datapath( // IO should be good for the most part
     logic Match_1E_M, Match_1E_W, Match_2E_M, Match_2E_W, Match_12D_E;
     logic match12d_e1, match12d_e2;
 
-
+    logic resetHit;
     logic TempWire;
 
     always_comb begin
@@ -180,12 +180,12 @@ module datapath( // IO should be good for the most part
     match m12d_e2(RA2D, WA3E, match12d_e2);
     assign Match_12D_E  = match12d_e1 | match12d_e2;
 
-
+    hazardReset hr(clk, reset, resetHit);
     /****** Hazard Unit ******/
     hazardunit hz(StallF, StallD, FlushD, FlushE, ForwardAE, // TODO wires not correct
                 ForwardBE,  Match_1E_M, Match_1E_W, Match_2E_M,
                 Match_2E_W, Match_12D_E, BranchEO, RegWriteM,
-                RegWriteW, MemtoRegE, PCSrcD, PCSrcEO, PCSrcM, PCSrcW);
+                RegWriteW, MemtoRegE, PCSrcD, PCSrcEO, PCSrcM, PCSrcW, resetHit);
 endmodule
 
 
@@ -250,6 +250,33 @@ always_comb
         default:
             shiftedOutput = 32'bx;
     endcase
+
+endmodule
+
+
+module hazardReset(
+    input logic clk, reset,
+    output logic resetActive);
+
+    logic pauseHazardOnReset;
+    logic [2:0] pauseCounter;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            pauseHazardOnReset <= 1'b1;
+            pauseCounter <= 3'b00;
+        end
+        else if (~reset && pauseHazardOnReset) begin
+            pauseCounter = pauseCounter + 1;
+            if(pauseCounter > 2'h3) begin
+                pauseHazardOnReset <= 1'b0;
+            end
+        end
+    end
+
+    always_comb begin
+        resetActive <= reset | pauseHazardOnReset;
+    end
 
 endmodule
 
