@@ -26,7 +26,7 @@ module arm(
     	// control unit output
 		PCSrc, RegWriteD, MemtoRegD, MemWriteD,
 		ALUControlD, BranchD, ALUSrcD, FlagWriteD, ImmSrcD, RegSrcD,
-		BEDmemE, BL,
+		BEDmemE, BLD,
 		// condlogic input
 		CondE, ALUFlagsE, FlagWriteE, FlagsE,
 		PCSE, RegWriteE, MemWriteE, BranchE, BLE,
