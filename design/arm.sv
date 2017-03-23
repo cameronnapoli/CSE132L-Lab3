@@ -7,9 +7,9 @@ module arm(
     input logic [31:0] ReadDataM,
     output logic BEDmem); // {datapath} to dmem
 
-    logic [3:0] ALUFlagsE, ALUControl, CondE, FlagsEO;
-    logic RegWrite, Branch, ALUSrc, MemtoReg, PCSrc, MemWrite, FlagWriteE, FlagsE;
-    logic [1:0] RegSrc, ImmSrc, FlagWriteD;
+    logic [3:0] ALUFlagsE, ALUControlD, CondE, FlagsE, FlagsEO;
+    logic RegWriteE, ALUSrcD, MemtoRegD, PCSrc, MemWriteD;
+    logic [1:0] RegSrcD, ImmSrcD, FlagWriteD, FlagWriteE;
     logic [31:0] InstrD; // Intermediary signal to allow Instr to pass through pipe
 	logic PCSE, RegWriteD, MemWriteE, BranchE, BLE;
 	logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO;
@@ -24,12 +24,12 @@ module arm(
         // control unit input
         clk, reset, Op, Funct, Rd,
     	// control unit output
-		PCSrc, RegWrite, MemtoReg, MemWrite,
-		ALUControl, Branch, ALUSrc, FlagWriteE, ImmSrc, RegSrc,
+		PCSrc, RegWriteD, MemtoRegD, MemWriteD,
+		ALUControlD, BranchD, ALUSrcD, FlagWriteD, ImmSrcD, RegSrcD,
 		BEDmemE, BL,
 		// condlogic input
-		CondE, ALUFlagsE, FlagWrite, FlagsE,
-		PCSE, RegWriteD, MemWriteE, BranchE, BLE,
+		CondE, ALUFlagsE, FlagWriteE, FlagsE,
+		PCSE, RegWriteE, MemWriteE, BranchE, BLE,
 		// condlogic output
 		FlagsEO,
 		PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO);

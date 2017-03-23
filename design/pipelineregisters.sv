@@ -138,8 +138,8 @@ module regEXMEM(
     output logic [31:0] ALUResultM,
     input logic [31:0] WriteDataE,
     output logic [31:0] WriteDataM,
-    input logic [31:0] WA3E,
-    output logic [31:0] WA3M );
+    input logic [3:0] WA3E,
+    output logic [3:0] WA3M );
 
 always @(posedge clk)
 begin
@@ -172,8 +172,8 @@ module regMEMWB(
     output logic [31:0] ReadDataW,
     input logic [31:0] ALUOutM,
     output logic [31:0] ALUOutW,
-    input logic [31:0]  WA3M,
-    output logic [31:0] WA3W);
+    input logic [3:0]  WA3M,
+    output logic [3:0] WA3W);
 
 always @(posedge clk)
 begin

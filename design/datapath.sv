@@ -66,9 +66,9 @@ module datapath( // IO should be good for the most part
 
     // MEM wires
     logic PCSrcM, RegWriteM, MemtoRegM;
-    logic [31:0] WA3M;
+    logic [3:0] WA3E, WA3M, WA3W, RA1E, RA2E;
     logic BLM;
-    logic [31:0] ALUOutM;
+    logic [31:0] ALUOutM, ALUOutW;
 
     // Write wires
     logic PCSrcW, MemtoRegW;
