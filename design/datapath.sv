@@ -48,8 +48,8 @@ module datapath( // IO should be good for the most part
     // DECODE & EXE wires
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
-    logic [31:0] Shamt, Out3, Reg, WD;
-    logic [3:0] RA1D, RA2D, WA; //Added RA3, WriteData, Write Address
+    logic [31:0] Shamt, Out3, Reg;
+    logic [3:0] RA1D, RA2D; //Added RA3, WriteData, Write Address
 
     logic [31:0] InstrD;
 
@@ -127,7 +127,7 @@ module datapath( // IO should be good for the most part
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E); 
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E);
 
     //Shift Logic
 
@@ -158,7 +158,7 @@ module datapath( // IO should be good for the most part
 
     /****** Instruction Write Back ******/
     regMEMWB mwreg(clk, reset, BLM, BLW, PCSrcM, PCSrcW, RegWriteM, RegWriteW, MemtoRegM, //13
-                    MemtoRegW, ReadDataM, ReadDataW, ALUResultE, ALUOutW, //ALUResult, WriteData, ReadData,
+                    MemtoRegW, ReadDataM, ReadDataW, ALUResultM, ALUOutW, //ALUResult, WriteData, ReadData,
                     WA3M, WA3W);
 
     // TODO: Read Data and ALUout might be backwards
