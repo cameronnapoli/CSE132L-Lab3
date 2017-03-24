@@ -34,12 +34,13 @@ module datapath( // IO should be good for the most part
     output logic [3:0] FlagsE,
     output logic PCSrcE, RegWriteE, MemWriteE, BranchE, BLE,
     input logic [3:0] FlagsEO,
-    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO,
+    input logic PCSrcEO, RegWriteEO, MemWriteEO, BranchEO, BLEO, BEDmemD,
 
     // For DMEM
     output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
     input logic [31:0] ReadDataM
+    output logic BEDmemM
     );
 
 
@@ -50,7 +51,7 @@ module datapath( // IO should be good for the most part
     logic [31:0] ExtImm, SrcA, SrcB, ResultW;
     logic [31:0] Shamt, Out3, Reg;
     logic [3:0] RA1D, RA2D; //Added RA3, WriteData, Write Address
-
+    logic BEDmemE;
     logic [31:0] InstrD;
 
     // SrcA -> RD1D, WriteData -> RD2D, Out3 -> RD3D   TODO:Need to connect these!!!
@@ -127,7 +128,7 @@ module datapath( // IO should be good for the most part
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E);
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E, BEDmemD, BEDmemE);
 
     //Shift Logic
 
@@ -150,7 +151,7 @@ module datapath( // IO should be good for the most part
     /****** Instruction MEM ******/
     regEXMEM xmreg(clk, reset, BLE, BLM, PCSrcEO, PCSrcM, RegWriteEO, //12
                     RegWriteM, MemtoRegE, MemtoRegM, MemWriteEO, MemWriteM, ALUResultE, ALUResultM,
-                    WriteDataE, WriteDataM, WA3E, WA3M);
+                    WriteDataE, WriteDataM, WA3E, WA3M, BEDmemE, BEDmemM);
 
     // This module outputs ALUResultM, WriteDataM, and MemWriteM. Inputs ReadDataM
 
