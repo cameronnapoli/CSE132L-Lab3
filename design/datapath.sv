@@ -39,7 +39,7 @@ module datapath( // IO should be good for the most part
     // For DMEM
     output logic MemWriteM,
     output logic [31:0] ALUResultM, WriteDataM,
-    input logic [31:0] ReadDataM
+    input logic [31:0] ReadDataM,
     output logic BEDmemM
     );
 
