@@ -127,7 +127,7 @@ module datapath( // IO should be good for the most part
             ExtImm, ExtendE, PCSrcD, PCSrcE, RegWriteD, RegWriteE, // TODO Need to modify control bits
             MemtoRegD, MemtoRegE, MemWriteD, MemWriteE, ALUControlD,
             ALUControlE, BranchD, BranchE, ALUSrcD, ALUSrcE, FlagWriteD,
-            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E);
+            FlagWE, FlagsEO, FlagsE, InstrD[31:28], CondE, BLD, BLE, RA1D, RA1E, RA2D, RA2E, InstrD[15:12], WA3E); 
 
     //Shift Logic
 
