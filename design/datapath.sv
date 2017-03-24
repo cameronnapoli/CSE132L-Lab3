@@ -44,7 +44,6 @@ module datapath( // IO should be good for the most part
 
 
     logic BLW; // For Branch-link
-    logic [31:0] PCFI; // Intermediate PC for reset
 
     // DECODE & EXE wires
     logic [31:0] PCNext, PCNext2, PCPlus4; //No longer use PCPlus8
@@ -98,8 +97,7 @@ module datapath( // IO should be good for the most part
 
 
     /****** Instruction Fetch ******/
-    regPCPCF pcreg(clk, reset, StallF, PCNext2, PCFI); //3 confirmed
-    flopr #(32) resetreg(clk, reset, PCFI, PCF);
+    regPCPCF pcreg(clk, reset, StallF, PCNext2, PCF); //3 confirmed
     adder #(32) pcadd1(PCF, 32'b100, PCPlus4); //4 confirmed
     //5: Imem implemented elsewhere. Datapath gives PCF to Imem and gets InstrF in return
 
