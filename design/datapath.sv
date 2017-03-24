@@ -134,12 +134,12 @@ module datapath( // IO should be good for the most part
 
 
     mux2 #(32) shamtmux(ExtendE, RD3E,  InstrE[4], Shamt); // previously mux2 #(32) shamtmux(ExtImm, Out3, InstrD[4], Shamt);
-    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], ScrBshift, Shamt, WriteDataE, TempWire/*FlagsE[1]*/); // TODO Change second FlagsE to output of shofter
+    shifter shftr(InstrE[6:5], InstrE[4], FlagsE[1], RD2E, Shamt, SrcBshift, TempWire/*FlagsE[1]*/); // TODO Change second FlagsE to output of shofter
     //previously shifter shftr(InstrE[6:5], InstrE[4], ALUFlagsE[1], WriteDataE, Shamt, Reg, ALUFlagsE[1]);
 
 
     mux3 #(32) SrcAEMux(RD1E, ResultW, ALUResultM, ForwardAE, SrcAE); //14
-    mux3 #(32) SrcBEMux(RD2E /*SrcBshift*/, ResultW, ALUResultM, ForwardBE, SrcBshift/*Writedata*/); //15
+    mux3 #(32) SrcBEMux(SrcBshift, ResultW, ALUResultM, ForwardBE, WriteDataE); //15
 
 
     // ALU logic
