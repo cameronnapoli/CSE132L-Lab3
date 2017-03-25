@@ -6,7 +6,6 @@ module imem(
     logic [31:0] RAM[511:0];
 
     // ALU Test
-    
     assign RAM[0] = 32'hE3A000AA;
     assign RAM[1] = 32'hE3A01055;
     assign RAM[2] = 32'hE3A020FF;
@@ -65,7 +64,6 @@ module imem(
     assign RAM[55] = 32'hE3A000FC;
     assign RAM[56] = 32'hE5809000;
     assign RAM[57] = 32'hEAFFFFFE;
-
 
     // LDR STR Test
     /*
