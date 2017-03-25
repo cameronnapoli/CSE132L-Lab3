@@ -2,9 +2,57 @@
   Linking design 'arm'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  * (15 designs)              /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/syn/arm.db, etc
+  * (8 designs)               /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/arm.db, etc
   saed32lvt_tt1p05vn40c (library) /users/ugrad2/2012/spring/pooriam/libraries/saed32lvt_tt1p05vn40c.db
   saed32sram_tt1p05vn40c (library) /users/ugrad2/2012/spring/pooriam/libraries/saed32sram_tt1p05vn40c.db
   dw_foundation.sldb (library) /ecelib/linware/synopsys15/dc/libraries/syn/dw_foundation.sldb
 
-1
+Information: Building the design 'decoder'. (HDL-193)
+Warning: Cannot find the design 'decoder' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux2' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regPCPCF'. (HDL-193)
+Warning: Cannot find the design 'regPCPCF' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regIFID'. (HDL-193)
+Warning: Cannot find the design 'regIFID' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux2' instantiated from design 'datapath' with
+	the parameters "4". (HDL-193)
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regfile'. (HDL-193)
+Warning: Cannot find the design 'regfile' in the library 'WORK'. (LBR-1)
+Information: Building the design 'extend'. (HDL-193)
+Warning: Cannot find the design 'extend' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regIDEX'. (HDL-193)
+Warning: Cannot find the design 'regIDEX' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux3' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+Warning: Cannot find the design 'mux3' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regEXMEM'. (HDL-193)
+Warning: Cannot find the design 'regEXMEM' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regMEMWB'. (HDL-193)
+Warning: Cannot find the design 'regMEMWB' in the library 'WORK'. (LBR-1)
+Information: Building the design 'match'. (HDL-193)
+Warning: Cannot find the design 'match' in the library 'WORK'. (LBR-1)
+Information: Building the design 'hazardReset'. (HDL-193)
+Warning: Cannot find the design 'hazardReset' in the library 'WORK'. (LBR-1)
+Information: Building the design 'hazardunit'. (HDL-193)
+Warning: Cannot find the design 'hazardunit' in the library 'WORK'. (LBR-1)
+Information: Building the design 'flopenr' instantiated from design 'condlogic' with
+	the parameters "2". (HDL-193)
+Warning: Cannot find the design 'flopenr' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'decoder' in 'controller'. (LINK-5)
+Warning: Unable to resolve reference 'mux2' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regPCPCF' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regIFID' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regfile' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'extend' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regIDEX' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'mux3' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regEXMEM' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'regMEMWB' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'match' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'hazardReset' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'hazardunit' in 'datapath'. (LINK-5)
+Warning: Unable to resolve reference 'flopenr' in 'condlogic'. (LINK-5)
+0

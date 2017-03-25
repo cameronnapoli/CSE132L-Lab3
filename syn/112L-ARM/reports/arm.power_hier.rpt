@@ -1,6 +1,6 @@
 Information: Propagating switching activity (medium effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated primary inputs. (PWR-414)
-Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
  
 ****************************************
 Report : power
@@ -9,7 +9,7 @@ Report : power
         -verbose
 Design : arm
 Version: J-2014.09-SP4
-Date   : Mon Feb 27 17:03:03 2017
+Date   : Fri Mar 24 19:37:17 2017
 ****************************************
 
 
@@ -23,8 +23,14 @@ Wire Load Model Mode: enclosed
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-arm                    16000             saed32lvt_tt1p05vn40c
-regfile                8000              saed32lvt_tt1p05vn40c
+arm                    8000              saed32lvt_tt1p05vn40c
+controller             ForQA             saed32lvt_tt1p05vn40c
+datapath               8000              saed32lvt_tt1p05vn40c
+condlogic              ForQA             saed32lvt_tt1p05vn40c
+adder_WIDTH32          ForQA             saed32lvt_tt1p05vn40c
+shifter                8000              saed32lvt_tt1p05vn40c
+alu                    8000              saed32lvt_tt1p05vn40c
+condcheck              ForQA             saed32lvt_tt1p05vn40c
 
 
 Global Operating Voltage = 1.05 
@@ -40,6 +46,12 @@ Power-specific unit information :
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-arm                                     187.198 2.21e+03 9.37e+09 1.18e+04 100.0
-  dp/rf (regfile)                        36.541 1.77e+03 6.11e+09 7.91e+03  67.2
+arm                                      91.062  145.402 3.04e+09 3.28e+03 100.0
+  dp (datapath)                          90.973  141.946 3.01e+09 3.25e+03  99.1
+    alu (alu)                            43.890   81.812 7.31e+08  857.098  26.2
+    shftr (shifter)                      44.007   57.221 2.20e+09 2.30e+03  70.3
+    pcadd1 (adder_WIDTH32)                1.269    2.684 7.45e+07   78.451   2.4
+  c (controller)                          2.189    3.456 2.69e+07   32.572   1.0
+    cd (condlogic)                        2.184    3.456 2.69e+07   32.567   1.0
+      cc (condcheck)                      1.608    2.752 1.71e+07   21.498   0.7
 1

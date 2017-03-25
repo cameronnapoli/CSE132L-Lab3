@@ -1,9 +1,10 @@
+Warning: Design 'arm' has '14' unresolved references. For more detailed information, use the "link" command. (UID-341)
  
 ****************************************
 Report : design
 Design : arm
 Version: J-2014.09-SP4
-Date   : Mon Feb 27 17:03:01 2017
+Date   : Fri Mar 24 19:37:16 2017
 ****************************************
 
 Design allows ideal nets on clock nets.
@@ -38,34 +39,34 @@ Wire Loading Model:
 
     Selected automatically from the total cell area.
 
-Name           :   16000
+Name           :   8000
 Location       :   saed32lvt_tt1p05vn40c
-Resistance     :   0.001282
-Capacitance    :   0.000569
+Resistance     :   0.0015727
+Capacitance    :   0.000312
 Area           :   0.01
-Slope          :   108.438
+Slope          :   90.6464
 Fanout   Length   Points Average Cap Std Deviation
 --------------------------------------------------------------
-     1    15.10
-     2    34.61
-     3    56.42
-     4    80.84
-     5   108.20
-     6   138.79
-     7   172.92
-     8   210.91
-     9   253.07
-    10   299.71
-    11   351.13
-    12   407.64
-    13   469.57
-    14   537.20
-    15   610.87
-    16   690.86
-    17   777.51
-    18   871.11
-    19   971.97
-    20  1080.41
+     1    13.94
+     2    31.80
+     3    51.61
+     4    73.61
+     5    98.05
+     6   125.17
+     7   155.23
+     8   188.46
+     9   225.12
+    10   265.45
+    11   309.71
+    12   358.13
+    13   410.96
+    14   468.46
+    15   530.86
+    16   598.42
+    17   671.38
+    18   749.98
+    19   834.49
+    20   925.13
 
 
 
@@ -89,9 +90,11 @@ Disabled Timing Arcs:
 
 Required Licenses:
 
-    DesignWare
+    None Required
 
 Design Parameters:
 
     None specified.
+
+Information: This design contains black box (unknown) components. (RPT-8)
 1

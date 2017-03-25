@@ -10,6 +10,9 @@ analyze -format sverilog { \
    extend.sv \
    flopenr.sv \
    flopr.sv \
+   hazardunit.sv \
    mux2.sv \
+   mux3.sv \
+   pipelineregisters.sv \
    regfile.sv \
 }

@@ -14,126 +14,102 @@ Information: Building the design 'controller'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'datapath'. (HDL-193)
 Presto compilation completed successfully.
+Warning: Cannot find the design 'decoder' in the library 'WORK'. (LBR-1)
 Information: Building the design 'decoder'. (HDL-193)
-
-Statistics for case statements in always block at line 23 in file
-	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv'
-===============================================
-|           Line           |  full/ parallel  |
-===============================================
-|            24            |    auto/auto     |
-===============================================
-Presto compilation completed successfully.
+Warning: Cannot find the design 'decoder' in the library 'WORK'. (LBR-1)
 Information: Building the design 'condlogic'. (HDL-193)
 Presto compilation completed successfully.
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
 Information: Building the design 'mux2' instantiated from design 'datapath' with
 	the parameters "32". (HDL-193)
-Presto compilation completed successfully.
-Information: Building the design 'flopr' instantiated from design 'datapath' with
-	the parameters "32". (HDL-193)
-
-Inferred memory devices in process
-	in routine flopr_WIDTH32 line 7 in file
-		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|        q_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
-===============================================================================
-Presto compilation completed successfully.
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'regPCPCF' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regPCPCF'. (HDL-193)
+Warning: Cannot find the design 'regPCPCF' in the library 'WORK'. (LBR-1)
 Information: Building the design 'adder' instantiated from design 'datapath' with
 	the parameters "32". (HDL-193)
 Presto compilation completed successfully.
+Warning: Cannot find the design 'regIFID' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regIFID'. (HDL-193)
+Warning: Cannot find the design 'regIFID' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
 Information: Building the design 'mux2' instantiated from design 'datapath' with
 	the parameters "4". (HDL-193)
-Presto compilation completed successfully.
+Warning: Cannot find the design 'mux2' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'regfile' in the library 'WORK'. (LBR-1)
 Information: Building the design 'regfile'. (HDL-193)
+Warning: Cannot find the design 'regfile' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'extend' in the library 'WORK'. (LBR-1)
+Information: Building the design 'extend'. (HDL-193)
+Warning: Cannot find the design 'extend' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'regIDEX' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regIDEX'. (HDL-193)
+Warning: Cannot find the design 'regIDEX' in the library 'WORK'. (LBR-1)
+Information: Building the design 'shifter'. (HDL-193)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv:200: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 199 in file
+	'/users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           200            |    auto/auto     |
+|           208            |    auto/auto     |
+===============================================
 
 Inferred memory devices in process
-	in routine regfile line 41 in file
-		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-|       rf_reg        | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
-===============================================================================
-Statistics for MUX_OPs
-===========================================================
-| block name/line  | Inputs | Outputs | # sel inputs | MB |
-===========================================================
-|    regfile/44    |   16   |   32    |      4       | N  |
-|    regfile/45    |   16   |   32    |      4       | N  |
-|    regfile/46    |   16   |   32    |      4       | N  |
-===========================================================
+	in routine shifter line 199 in file
+		'/users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|    carryFlag_reg    | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv:199: Netlist for always_comb block contains a latch. (ELAB-974)
 Presto compilation completed successfully.
-Information: Building the design 'extend'. (HDL-193)
-Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv:8: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-
-Statistics for case statements in always block at line 7 in file
-	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv'
-===============================================
-|           Line           |  full/ parallel  |
-===============================================
-|            8             |    auto/auto     |
-===============================================
-Presto compilation completed successfully.
-Information: Building the design 'shifter'. (HDL-193)
-Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv:70: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-
-Statistics for case statements in always block at line 69 in file
-	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv'
-===============================================
-|           Line           |  full/ parallel  |
-===============================================
-|            70            |    auto/auto     |
-|            78            |    auto/auto     |
-===============================================
-Presto compilation completed successfully.
+Warning: Cannot find the design 'mux3' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux3' instantiated from design 'datapath' with
+	the parameters "32". (HDL-193)
+Warning: Cannot find the design 'mux3' in the library 'WORK'. (LBR-1)
 Information: Building the design 'alu'. (HDL-193)
-Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv:27: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/alu.sv:26: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
-Statistics for case statements in always block at line 20 in file
-	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv'
+Statistics for case statements in always block at line 19 in file
+	'/users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/alu.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            27            |    auto/auto     |
+|            26            |    auto/auto     |
 ===============================================
 Presto compilation completed successfully.
+Warning: Cannot find the design 'regEXMEM' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regEXMEM'. (HDL-193)
+Warning: Cannot find the design 'regEXMEM' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'regMEMWB' in the library 'WORK'. (LBR-1)
+Information: Building the design 'regMEMWB'. (HDL-193)
+Warning: Cannot find the design 'regMEMWB' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'match' in the library 'WORK'. (LBR-1)
+Information: Building the design 'match'. (HDL-193)
+Warning: Cannot find the design 'match' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'hazardReset' in the library 'WORK'. (LBR-1)
+Information: Building the design 'hazardReset'. (HDL-193)
+Warning: Cannot find the design 'hazardReset' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'hazardunit' in the library 'WORK'. (LBR-1)
+Information: Building the design 'hazardunit'. (HDL-193)
+Warning: Cannot find the design 'hazardunit' in the library 'WORK'. (LBR-1)
+Warning: Cannot find the design 'flopenr' in the library 'WORK'. (LBR-1)
 Information: Building the design 'flopenr' instantiated from design 'condlogic' with
 	the parameters "2". (HDL-193)
-
-Inferred memory devices in process
-	in routine flopenr_WIDTH2 line 7 in file
-		'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|        q_reg        | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
-===============================================================================
-Presto compilation completed successfully.
+Warning: Cannot find the design 'flopenr' in the library 'WORK'. (LBR-1)
 Information: Building the design 'condcheck'. (HDL-193)
 
 Statistics for case statements in always block at line 11 in file
-	'/users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv'
+	'/users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/condcheck.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
 |            12            |    auto/auto     |
 ===============================================
 Presto compilation completed successfully.
+Warning: Design 'arm' has '14' unresolved references. For more detailed information, use the "link" command. (UID-341)
 1

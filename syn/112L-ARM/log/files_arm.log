@@ -1,99 +1,115 @@
-analyze -format sverilog {    adder.sv    alu.sv    arm.sv    condcheck.sv    condlogic.sv    controller.sv    datapath.sv    decoder.sv    extend.sv    flopenr.sv    flopr.sv    mux2.sv    regfile.sv }Running PRESTO HDLC
+analyze -format sverilog {    adder.sv    alu.sv    arm.sv    condcheck.sv    condlogic.sv    controller.sv    datapath.sv    decoder.sv    extend.sv    flopenr.sv    flopr.sv    hazardunit.sv    mux2.sv    mux3.sv    pipelineregisters.sv    regfile.sv }Running PRESTO HDLC
 Searching for ./adder.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/adder.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/adder.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/adder.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/adder.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/adder.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/adder.sv
 Searching for ./alu.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/alu.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/alu.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/alu.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/alu.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/alu.sv
 Searching for ./arm.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/arm.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/arm.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/arm.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/arm.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/arm.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/arm.sv
 Searching for ./condcheck.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/condcheck.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/condcheck.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/condcheck.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/condcheck.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/condcheck.sv
 Searching for ./condlogic.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/condlogic.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/condlogic.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/condlogic.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/condlogic.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condlogic.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/condlogic.sv
 Searching for ./controller.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/controller.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/controller.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/controller.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/controller.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/controller.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/controller.sv
 Searching for ./datapath.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/datapath.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/datapath.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/datapath.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/datapath.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv
 Searching for ./decoder.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/decoder.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/decoder.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/decoder.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/decoder.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/decoder.sv
 Searching for ./extend.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/extend.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/extend.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/extend.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/extend.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/extend.sv
 Searching for ./flopenr.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/flopenr.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/flopenr.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/flopenr.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/flopenr.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/flopenr.sv
 Searching for ./flopr.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/flopr.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/flopr.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/flopr.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/flopr.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/flopr.sv
+Searching for ./hazardunit.sv
+Searching for /ecelib/linware/synopsys15/dc/libraries/syn/hazardunit.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/hazardunit.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/hazardunit.sv
+Searching for /users/ugrad2/2012/spring/pooriam/libraries/hazardunit.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/hazardunit.sv
 Searching for ./mux2.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/mux2.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/mux2.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/mux2.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/mux2.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/mux2.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/mux2.sv
+Searching for ./mux3.sv
+Searching for /ecelib/linware/synopsys15/dc/libraries/syn/mux3.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/mux3.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/mux3.sv
+Searching for /users/ugrad2/2012/spring/pooriam/libraries/mux3.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/mux3.sv
+Searching for ./pipelineregisters.sv
+Searching for /ecelib/linware/synopsys15/dc/libraries/syn/pipelineregisters.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/pipelineregisters.sv
+Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/pipelineregisters.sv
+Searching for /users/ugrad2/2012/spring/pooriam/libraries/pipelineregisters.sv
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/pipelineregisters.sv
 Searching for ./regfile.sv
 Searching for /ecelib/linware/synopsys15/dc/libraries/syn/regfile.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/regfile.sv
 Searching for /ecelib/linware/synopsys15/dc/packages/IEEE/regfile.sv
 Searching for /users/ugrad2/2012/spring/pooriam/libraries/regfile.sv
-Searching for /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/adder.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/alu.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/arm.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condcheck.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/condlogic.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/controller.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/datapath.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/decoder.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/extend.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopenr.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/flopr.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/mux2.sv
-Compiling source file /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv
-Warning:  /users/ugrad/2017/winter/cnapoli/lab-2-working_v3/design/regfile.sv:41: The statements in initial blocks are ignored. (VER-281)
-Presto compilation completed successfully.
+Searching for /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/regfile.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/adder.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/alu.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/arm.sv
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/arm.sv:29: the undeclared symbol 'BLD' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/arm.sv:54: the undeclared symbol 'BEdmemM' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/condcheck.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/condlogic.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/controller.sv
+Compiling source file /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv
+Warning:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv:118: the undeclared symbol 'RegWriteW' assumed to have the default net type, which is 'wire'. (VER-936)
+Error:  /users/ugrad/2017/winter/cnapoli/lab3_v5/syn/../design/datapath.sv:263: Variable 'pauseCounter' is the target of both blocking and nonblocking assignments in the same always block. (VER-134)
+Error:  Cannot recover from previous errors. (VER-518)
+*** Presto compilation terminated with 2 errors. ***
 Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32lvt_tt1p05vn40c.db'
 Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32sram_tt1p05vn40c.db'
 Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/dw_foundation.sldb'
-1
-1
+0
+0

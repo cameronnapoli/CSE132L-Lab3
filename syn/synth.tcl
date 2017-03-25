@@ -48,11 +48,12 @@ if { ![file exists $DBDIR] || ![file isdirectory $DBDIR] } {
 set LVT_TSMCHOME "/users/ugrad2/2012/spring/pooriam/libraries/"
 
 set TECH_LIB_PATH_LVT_1P05_N40  "$LVT_TSMCHOME/saed32lvt_tt1p05vn40c.db"
-set TECH_LIB_PATH  $TECH_LIB_PATH_LVT_1P05_N40;  
+set TECH_LIB_PATH  $TECH_LIB_PATH_LVT_1P05_N40;
 set MEM_LIB_LVT_1P05_N40    "saed32sram_tt1p05vn40c"
-set TECH_LIB $TECH_LIB_LVT_1P05_N40;  
-set MEM_LIB $MEM_LIB_LVT_1P05_N40;  
-set DRIVE_CELL BUFFD12BWP12TLVT; 
+set TECH_LIB_LVT_1P05_N40 "$LVT_TSMCHOME/saed32lvt_tt1p05vn40c.lib"
+set TECH_LIB $TECH_LIB_LVT_1P05_N40;
+set MEM_LIB $MEM_LIB_LVT_1P05_N40;
+set DRIVE_CELL BUFFD12BWP12TLVT;
 set WC_OP_CONDS WCZ0D81COM;
 
 
@@ -179,8 +180,3 @@ exec rm -rf *.syn *.mr *.pvl
 
 
 exit
-
-
-
-
-

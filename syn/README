@@ -4,7 +4,7 @@ source /ecelib/linware/synopsys15/env/dc.csh
 
 
 # Inside your synthesis script, the $design is assumed to point to your VHDL/Verilog/SVerilog design files, if this variable is already set in your environment, you don't need to run it.
-setenv design `pwd`/design
+setenv design `pwd`/../design
 
 
 # The folllowing command will invoke the Synopsys Design Compiler (the synthesizer tool) and pass the synth.tcl script to run.
