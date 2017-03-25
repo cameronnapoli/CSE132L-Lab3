@@ -46,10 +46,10 @@ always_comb begin
 	PCWrPendingF = PCSrcD | PCSrcE | PCSrcM;
 
     if (~resetHit) begin
-    	StallD = LDRstall;
-    	StallF = LDRstall | PCWrPendingF;
-    	FlushE = LDRstall | BranchTakenE;
-    	FlushD = PCWrPendingF | PCSrcW | BranchTakenE;
+    	StallD <= LDRstall;
+    	StallF <= LDRstall | PCWrPendingF;
+    	FlushE <= LDRstall | BranchTakenE;
+    	FlushD <= PCWrPendingF | PCSrcW | BranchTakenE;
         //Forwarding
     	if (Match_1E_M & RegWriteM)
     		ForwardAE <= 2'b10; // SrcAE = ALUOutM
